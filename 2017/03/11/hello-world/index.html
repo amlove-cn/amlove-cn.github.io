@@ -41,8 +41,8 @@ Quick">
 <div style="display: none">
   <input class="theme_disqus_on" value="false">
   <input class="theme_duoshuo_on" value="true">
-  <input class="theme_preload_comment" value="false">
-  <input class="theme_duoshuo_domain" value="jaytp">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_duoshuo_domain" value="amlove">
 </div>
 <body>
 <aside class="nav">
@@ -189,48 +189,9 @@ Quick">
             (d.head || d.body).appendChild(s);
         }
         
-        // Add comment count
-        $(function(){
-            var jsonUrl = "http://api.duoshuo.com/threads/counts.jsonp?short_name=jaytp&threads=2017/03/11/hello-world/&callback=?";
-            $.getJSON(jsonUrl, function(result){
-                $.each(result.response, function(i, field){
-                    var value = field.comments;
-                    if (value > 0) {
-                        $(".count-comment").text(value);
-                        return;
-                    }
-                })
-            })
-        })
-        
     </script>
     
-    <aside class="comment-bar">
-        <a href="javascript:void(0);">
-            <i class="fa fa-commenting-o animated infinite pulse"></i>
-            <i class="fa fa-spinner fa-pulse"></i>
-            <span class="count-comment"></span>
-        </a>
-    </aside>
-    <script>
-        var $commentBar = $("#comments aside.comment-bar");
-        var load$hide = function(){
-            $commentBar.find("a > i").toggle();
-            
-            pajx_loadDuodsuo();
-            
-            $commentBar.fadeOut(800);
-        }
-        $commentBar.click(function(){
-            load$hide();
-        })
-        $commentBar.children("a").mouseenter(function(){
-            load$hide();
-        })
-        if (window.location.hash === "#comments") {
-            load$hide();
-        }
-    </script>
+    <script> loadComment(); </script>
 
 </div>
     
@@ -270,7 +231,7 @@ Quick">
 <script>
     $(function () {
         $('.search').AutoComplete({
-            'data': ['@仓鼠','@vb2005xu',],
+            'data': ['@牵猪的仓鼠',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
