@@ -57,7 +57,7 @@
     <link href="http://s.amlove.cn/2017/03/12/Hexo-%E6%96%B0%E6%89%8B%E8%AE%B0/"/>
     <id>http://s.amlove.cn/2017/03/12/Hexo-新手记/</id>
     <published>2017-03-12T11:35:02.000Z</published>
-    <updated>2017-03-12T11:50:49.447Z</updated>
+    <updated>2017-03-12T11:52:22.019Z</updated>
     
     <content type="html"><![CDATA[<p>准备使用 hexo 来写博客</p>
 <pre><code># 先安装
@@ -106,8 +106,7 @@ description: 搭建 Hexo 博客写作环境
 <li>评论服务:<br>可以使用 多说,youyan,disqus 等</li>
 <li>站点统计服务:<br>百度统计,谷歌统计,不蒜子网站计数</li>
 </ul>
-<p>###遇到的问题:</p>
-<ul>
+<h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题:"></a>遇到的问题:</h1><ul>
 <li>error deployer not found:git<br>缺少插件 <code>npm install hexo-deployer-git --save</code> 的原因</li>
 <li>wordcount 未定义<br>缺少插件 <code>npm install hexo-wordcount --save</code> 的原因,<a href="http://www.jianshu.com/p/e122fc6f5946" target="_blank" rel="external">参见</a></li>
 <li>部署之后,CNAME被冲掉<br>解决方法就是在 <code>source</code> 目录新建一个<code>CNAME</code>文件,其中写着域名</li>
