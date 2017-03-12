@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://s.amlove.cn/"/>
-  <updated>2017-03-11T15:19:12.986Z</updated>
+  <updated>2017-03-12T11:45:09.561Z</updated>
   <id>http://s.amlove.cn/</id>
   
   <author>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://s.amlove.cn/2017/03/11/hello-world/"/>
-    <id>http://s.amlove.cn/2017/03/11/hello-world/</id>
-    <published>2017-03-11T15:37:20.861Z</published>
-    <updated>2017-03-11T15:19:12.986Z</updated>
+    <link href="http://s.amlove.cn/2017/03/12/hello-world/"/>
+    <id>http://s.amlove.cn/2017/03/12/hello-world/</id>
+    <published>2017-03-12T11:45:02.000Z</published>
+    <updated>2017-03-12T11:45:09.561Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
@@ -39,10 +39,94 @@
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      Hello world on hexo!
     
     </summary>
     
+      <category term="Hexo教程" scheme="http://s.amlove.cn/categories/Hexo%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="Hexo" scheme="http://s.amlove.cn/tags/Hexo/"/>
+    
+      <category term="入门" scheme="http://s.amlove.cn/tags/%E5%85%A5%E9%97%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo 新手记</title>
+    <link href="http://s.amlove.cn/2017/03/12/Hexo-%E6%96%B0%E6%89%8B%E8%AE%B0/"/>
+    <id>http://s.amlove.cn/2017/03/12/Hexo-新手记/</id>
+    <published>2017-03-12T11:35:02.000Z</published>
+    <updated>2017-03-12T11:50:49.447Z</updated>
+    
+    <content type="html"><![CDATA[<p>准备使用 hexo 来写博客</p>
+<pre><code># 先安装
+npm install -g hexo-cli
+
+# 初始化博客目录
+hexo init blog-dir
+
+# 生成静态页面
+hexo generate
+
+# 本地启动
+hexo server
+
+# 部署到github
+  修改 _config.yml
+  deploy: 
+    type: git
+    repo: https://github.com/amlove-cn/amlove-cn.github.io.git
+    branch: master
+
+hexo deploy
+</code></pre><h1 id="自定义主题"><a href="#自定义主题" class="headerlink" title="自定义主题"></a>自定义主题</h1><p><code>hexo-theme-3-hexo</code> 是个很棒的主题,要使用它,可以按以下步骤来进行:</p>
+<pre><code># 安装主题
+git clone https://github.com/yelog/hexo-theme-3-hexo.git themes/3-hexo
+
+# 修改hexo根目录的_config.yml的两处，如下
+theme: 3-hexo
+highlight:
+  enable: false #关闭hexo渲染高亮，使用主题代码块高亮
+
+# 重新 生成
+hexo g
+</code></pre><h1 id="生成rss-和-sitemap"><a href="#生成rss-和-sitemap" class="headerlink" title="生成rss 和 sitemap"></a>生成rss 和 sitemap</h1><pre><code># 安装以下两个插件就可以直接生成
+npm install hexo-generator-feed --save
+npm install hexo-generator-sitemap --save
+</code></pre><h1 id="使用标签-和-分类"><a href="#使用标签-和-分类" class="headerlink" title="使用标签 和 分类"></a>使用标签 和 分类</h1><pre><code># 标签和分类都是在文章中来指定的,通过指令去自动生成的
+---
+title: Hexo 新手记
+date: 2017-03-12 19:35:02
+categories: &quot;Hexo教程&quot; #文章分類目錄
+tags: [Hexo, 入门] #文章标签
+description: 搭建 Hexo 博客写作环境
+---
+</code></pre><h1 id="第三方服务"><a href="#第三方服务" class="headerlink" title="第三方服务"></a>第三方服务</h1><ul>
+<li>评论服务:<br>可以使用 多说,youyan,disqus 等</li>
+<li>站点统计服务:<br>百度统计,谷歌统计,不蒜子网站计数</li>
+</ul>
+<p>###遇到的问题:</p>
+<ul>
+<li>error deployer not found:git<br>缺少插件 <code>npm install hexo-deployer-git --save</code> 的原因</li>
+<li>wordcount 未定义<br>缺少插件 <code>npm install hexo-wordcount --save</code> 的原因,<a href="http://www.jianshu.com/p/e122fc6f5946" target="_blank" rel="external">参见</a></li>
+<li>部署之后,CNAME被冲掉<br>解决方法就是在 <code>source</code> 目录新建一个<code>CNAME</code>文件,其中写着域名</li>
+<li>文章描述出现多行该如何解决?<br>尚不知晓</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      搭建 Hexo 博客写作环境
+    
+    </summary>
+    
+      <category term="Hexo教程" scheme="http://s.amlove.cn/categories/Hexo%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="Hexo" scheme="http://s.amlove.cn/tags/Hexo/"/>
+    
+      <category term="入门" scheme="http://s.amlove.cn/tags/%E5%85%A5%E9%97%A8/"/>
     
   </entry>
   
