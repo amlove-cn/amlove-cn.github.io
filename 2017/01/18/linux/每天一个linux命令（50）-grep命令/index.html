@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>每天一个linux命令（50）: grep命令 | 老鼠洞</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Linux系统中grep命令是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹 配的行打印出来。grep全称是Global Regular Expression Print，表示全局正则表达式版本，它的使用权限是所有用户。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每天一个linux命令（50）: grep命令">
+<meta property="og:url" content="http://s.amlove.cn/2017/01/18/linux/每天一个linux命令（50）-grep命令/index.html">
+<meta property="og:site_name" content="老鼠洞">
+<meta property="og:description" content="Linux系统中grep命令是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹 配的行打印出来。grep全称是Global Regular Expression Print，表示全局正则表达式版本，它的使用权限是所有用户。">
+<meta property="og:updated_time" content="2017-03-13T04:11:01.648Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每天一个linux命令（50）: grep命令">
+<meta name="twitter:description" content="Linux系统中grep命令是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹 配的行打印出来。grep全称是Global Regular Expression Print，表示全局正则表达式版本，它的使用权限是所有用户。">
+  
+  
+    <link rel="icon" href="/img/avatar.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link rel="stylesheet" href="/css/hl_theme/sublime.css">
+  
+  <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="/js/jquery.autocomplete.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+    <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_duoshuo_on" value="true">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_duoshuo_domain" value="amlove">
+</div>
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar" style="background-image:url(/img/avatar.jpg)"></a>
+<div class="author">
+    <span>牵猪的仓鼠</span>
+</div>
+<div class="icon">
+    
+    <a class="rss" title="rss" href="/atom.xml" target="_blank"></a>
+    
+    
+    <a class="github" title="github" href="https://github.com/amlove2" target="_blank"></a>
+    
+    
+    
+    
+    
+    
+    
+    <a class="weibo" title="weibo" href="http://weibo.com/vb2005xu" target="_blank"></a>
+    
+    
+    <a class="email" title="email" href="mailto:vb2005xu@sina.com"></a>
+    
+</div>
+<ul>
+    <li class="all active">全部文章</li>
+    
+    <li data-rel="Hexo教程"> Hexo教程 </li>
+    
+    <li data-rel="数据库"> 数据库 </li>
+    
+    <li data-rel="linux"> linux </li>
+    
+</ul>
+    </div>
+    <div class="nav-right">
+        <form onkeydown="if(event.keyCode==13){return false;}">
+    <input class="search" type="text" placeholder="Search..." autocomplete="off">
+    <i class="cross"></i>
+    <span>
+        <label for="tagswitch">Tags:</label>
+        <input id="tagswitch" type="checkbox">
+    </span>
+</form>
+<ul class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">入门</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">PostgreSQL</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">vim</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">ftp</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">linux命令</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</ul>
+
+<nav>
+    
+    <a id="top" class="Hexo教程 "
+       href="/2017/03/12/hello-world/"
+       data-tag="Hexo,入门"
+       data-author="" >
+        <span class="post-title" title="Hello World">Hello World</span>
+        <span class="post-date" title="2017-03-12 19:45:02">2017/03/12</span>
+    </a>
+    
+    <a id="top" class="Hexo教程 "
+       href="/2017/03/12/Hexo-新手记/"
+       data-tag="Hexo,入门"
+       data-author="" >
+        <span class="post-title" title="Hexo 新手记">Hexo 新手记</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a id="top" class="linux "
+       href="/2017/01/23/linux/每天一个linux命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令">每天一个linux命令</span>
+        <span class="post-date" title="2017-01-23 11:41:48">2017/01/23</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/03/06/linux/Vim命令速查表/"
+       data-tag="vim"
+       data-author="" >
+        <span class="post-title" title="Vim命令速查表">Vim命令速查表</span>
+        <span class="post-date" title="2017-03-06 11:23:36">2017/03/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/03/06/linux/如何在linux中搭建ftp服务/"
+       data-tag="ftp"
+       data-author="" >
+        <span class="post-title" title="如何在linux中搭建ftp服务">如何在linux中搭建ftp服务</span>
+        <span class="post-date" title="2017-03-06 08:47:48">2017/03/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/03/05/linux/每天一个linux命令（57）-sftp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（57）: sftp命令">每天一个linux命令（57）: sftp命令</span>
+        <span class="post-date" title="2017-03-05 16:29:38">2017/03/05</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/02/20/linux/每天一个linux命令（56）-tailf命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（56）: tailf命令">每天一个linux命令（56）: tailf命令</span>
+        <span class="post-date" title="2017-02-20 15:11:06">2017/02/20</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/23/linux/每天一个linux命令（55）-crontab命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（55）: crontab命令">每天一个linux命令（55）: crontab命令</span>
+        <span class="post-date" title="2017-01-23 10:44:50">2017/01/23</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/22/linux/每天一个linux命令（54）-at命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（54）: at命令">每天一个linux命令（54）: at命令</span>
+        <span class="post-date" title="2017-01-22 10:23:44">2017/01/22</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/21/linux/每天一个linux命令（53）-watch命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（53）: watch命令">每天一个linux命令（53）: watch命令</span>
+        <span class="post-date" title="2017-01-21 10:12:30">2017/01/21</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/20/linux/每天一个linux命令（52）-ps命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（52）: ps命令">每天一个linux命令（52）: ps命令</span>
+        <span class="post-date" title="2017-01-20 09:46:16">2017/01/20</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/19/linux/每天一个linux命令（51）-wc命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（51）: wc命令">每天一个linux命令（51）: wc命令</span>
+        <span class="post-date" title="2017-01-19 09:33:59">2017/01/19</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/18/linux/每天一个linux命令（50）-grep命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（50）: grep命令">每天一个linux命令（50）: grep命令</span>
+        <span class="post-date" title="2017-01-18 10:12:46">2017/01/18</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/17/linux/每天一个linux命令（49）-cal命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（49）: cal命令">每天一个linux命令（49）: cal命令</span>
+        <span class="post-date" title="2017-01-17 09:38:32">2017/01/17</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/16/linux/每天一个linux命令（48）-date命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（48）: date命令">每天一个linux命令（48）: date命令</span>
+        <span class="post-date" title="2017-01-16 14:39:27">2017/01/16</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/15/linux/每天一个linux命令（47）-diff命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（47）: diff命令">每天一个linux命令（47）: diff命令</span>
+        <span class="post-date" title="2017-01-15 14:08:08">2017/01/15</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/14/linux/每天一个linux命令（46）-ln命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（46）: ln命令">每天一个linux命令（46）: ln命令</span>
+        <span class="post-date" title="2017-01-14 11:00:33">2017/01/14</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/13/linux/每天一个linux命令（45）-scp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（45）: scp命令">每天一个linux命令（45）: scp命令</span>
+        <span class="post-date" title="2017-01-13 10:53:48">2017/01/13</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/12/linux/每天一个linux命令（44）-rcp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（44）: rcp命令">每天一个linux命令（44）: rcp命令</span>
+        <span class="post-date" title="2017-01-12 10:36:06">2017/01/12</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/12/linux/每天一个linux命令（43）-telnet命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（43）: telnet命令">每天一个linux命令（43）: telnet命令</span>
+        <span class="post-date" title="2017-01-12 09:24:01">2017/01/12</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/11/linux/每天一个linux命令（42）-ss命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（42）: ss命令">每天一个linux命令（42）: ss命令</span>
+        <span class="post-date" title="2017-01-11 10:34:47">2017/01/11</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/10/linux/每天一个linux命令（41）-netstat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（41）: netstat命令">每天一个linux命令（41）: netstat命令</span>
+        <span class="post-date" title="2017-01-10 09:54:16">2017/01/10</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/09/linux/每天一个linux命令（40）-traceroute命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（40）: traceroute命令">每天一个linux命令（40）: traceroute命令</span>
+        <span class="post-date" title="2017-01-09 10:56:53">2017/01/09</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/08/linux/每天一个linux命令（39）-ping命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（39）: ping命令">每天一个linux命令（39）: ping命令</span>
+        <span class="post-date" title="2017-01-08 10:24:50">2017/01/08</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/07/linux/每天一个linux命令（38）-route命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（38）: route命令">每天一个linux命令（38）: route命令</span>
+        <span class="post-date" title="2017-01-07 10:16:34">2017/01/07</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/06/linux/每天一个linux命令（37）-ifconfig命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（37）: ifconfig命令">每天一个linux命令（37）: ifconfig命令</span>
+        <span class="post-date" title="2017-01-06 09:57:01">2017/01/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/05/linux/每天一个linux命令（36）-lsof命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（36）: lsof命令">每天一个linux命令（36）: lsof命令</span>
+        <span class="post-date" title="2017-01-05 10:28:13">2017/01/05</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/04/linux/每天一个linux命令（35）-iostat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（35）: iostat命令">每天一个linux命令（35）: iostat命令</span>
+        <span class="post-date" title="2017-01-04 10:10:02">2017/01/04</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/03/linux/每天一个linux命令（34）-vmstat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（34）: vmstat命令">每天一个linux命令（34）: vmstat命令</span>
+        <span class="post-date" title="2017-01-03 09:46:57">2017/01/03</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/02/linux/每天一个linux命令（33）-free命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（33）: free命令">每天一个linux命令（33）: free命令</span>
+        <span class="post-date" title="2017-01-02 21:43:26">2017/01/02</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/01/linux/每天一个linux命令（32）-top命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（32）: top命令">每天一个linux命令（32）: top命令</span>
+        <span class="post-date" title="2017-01-01 19:31:28">2017/01/01</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/31/linux/每天一个linux命令（31）-du命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（31）: du命令">每天一个linux命令（31）: du命令</span>
+        <span class="post-date" title="2016-12-31 14:36:01">2016/12/31</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/30/linux/每天一个linux命令（30）-df命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（30）: df命令">每天一个linux命令（30）: df命令</span>
+        <span class="post-date" title="2016-12-30 14:23:31">2016/12/30</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/29/linux/每天一个linux命令（29）-etc-group文件详解/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（29）: /etc/group文件详解">每天一个linux命令（29）: /etc/group文件详解</span>
+        <span class="post-date" title="2016-12-29 14:13:05">2016/12/29</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/28/linux/每天一个linux命令（28）-chown命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（28）: chown命令">每天一个linux命令（28）: chown命令</span>
+        <span class="post-date" title="2016-12-28 09:51:30">2016/12/28</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/27/linux/每天一个linux命令（27）-chgrp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（27）: chgrp命令">每天一个linux命令（27）: chgrp命令</span>
+        <span class="post-date" title="2016-12-27 09:40:06">2016/12/27</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/26/linux/每天一个linux命令（26）-chmod命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（26）: chmod命令">每天一个linux命令（26）: chmod命令</span>
+        <span class="post-date" title="2016-12-26 20:22:43">2016/12/26</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/25/linux/每天一个linux命令（25）-gzip命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（25）: gzip命令">每天一个linux命令（25）: gzip命令</span>
+        <span class="post-date" title="2016-12-25 16:55:15">2016/12/25</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/24/linux/每天一个linux命令（24）-tar命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（24）: tar命令">每天一个linux命令（24）: tar命令</span>
+        <span class="post-date" title="2016-12-24 10:24:17">2016/12/24</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/23/linux/每天一个linux命令（23）-用SecureCRT来上传和下载文件/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（23）: 用SecureCRT来上传和下载文件">每天一个linux命令（23）: 用SecureCRT来上传和下载文件</span>
+        <span class="post-date" title="2016-12-23 09:48:15">2016/12/23</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/22/linux/每天一个linux命令（22）-find命令的参数详解/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（22）: find命令的参数详解">每天一个linux命令（22）: find命令的参数详解</span>
+        <span class="post-date" title="2016-12-22 11:44:14">2016/12/22</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/21/linux/每天一个linux命令（21）-find命令之xargs/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（21）: find命令之xargs">每天一个linux命令（21）: find命令之xargs</span>
+        <span class="post-date" title="2016-12-21 11:08:01">2016/12/21</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/20/linux/每天一个linux命令（20）-find命令之exec/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（20）: find命令之exec">每天一个linux命令（20）: find命令之exec</span>
+        <span class="post-date" title="2016-12-20 10:47:32">2016/12/20</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/19/linux/每天一个linux命令（19）-find命令概览/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（19）: find命令概览">每天一个linux命令（19）: find命令概览</span>
+        <span class="post-date" title="2016-12-19 15:19:10">2016/12/19</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/18/linux/每天一个linux命令（18）-locate命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（18）: locate命令">每天一个linux命令（18）: locate命令</span>
+        <span class="post-date" title="2016-12-18 15:09:28">2016/12/18</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/17/linux/每天一个linux命令（17）-whereis命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（17）: whereis命令">每天一个linux命令（17）: whereis命令</span>
+        <span class="post-date" title="2016-12-17 10:42:58">2016/12/17</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/16/linux/每天一个linux命令（16）-which命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（16）: which命令">每天一个linux命令（16）: which命令</span>
+        <span class="post-date" title="2016-12-16 11:25:49">2016/12/16</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/15/linux/每天一个linux命令（15）-tail命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（15）: tail命令">每天一个linux命令（15）: tail命令</span>
+        <span class="post-date" title="2016-12-15 15:00:26">2016/12/15</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/14/linux/每天一个linux命令（14）-head命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（14）: head命令">每天一个linux命令（14）: head命令</span>
+        <span class="post-date" title="2016-12-14 14:35:49">2016/12/14</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/13/linux/每天一个linux命令（13）-less命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（13）: less命令">每天一个linux命令（13）: less命令</span>
+        <span class="post-date" title="2016-12-13 21:46:14">2016/12/13</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/12/linux/每天一个linux命令（12）-more命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（12）: more命令">每天一个linux命令（12）: more命令</span>
+        <span class="post-date" title="2016-12-12 21:29:39">2016/12/12</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/11/linux/每天一个linux命令（11）-nl命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（11）: nl命令">每天一个linux命令（11）: nl命令</span>
+        <span class="post-date" title="2016-12-11 21:11:48">2016/12/11</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/10/linux/每天一个linux命令（10）-cat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（10）: cat命令">每天一个linux命令（10）: cat命令</span>
+        <span class="post-date" title="2016-12-10 10:52:50">2016/12/10</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/09/linux/每天一个linux命令（9）-touch命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（9）: touch命令">每天一个linux命令（9）: touch命令</span>
+        <span class="post-date" title="2016-12-09 07:15:12">2016/12/09</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/08/linux/每天一个linux命令（8）-cp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（8）: cp命令">每天一个linux命令（8）: cp命令</span>
+        <span class="post-date" title="2016-12-08 16:31:43">2016/12/08</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/07/linux/每天一个linux命令（7）-mv命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（7）: mv命令">每天一个linux命令（7）: mv命令</span>
+        <span class="post-date" title="2016-12-07 15:55:20">2016/12/07</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/06/linux/每天一个linux命令（6）-rmdir命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（6）: rmdir命令">每天一个linux命令（6）: rmdir命令</span>
+        <span class="post-date" title="2016-12-06 15:24:32">2016/12/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/05/linux/每天一个linux命令（5）-rm命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（5）: rm命令">每天一个linux命令（5）: rm命令</span>
+        <span class="post-date" title="2016-12-05 13:40:38">2016/12/05</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/04/linux/每天一个linux命令（4）-mkdir命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（4）: mkdir命令">每天一个linux命令（4）: mkdir命令</span>
+        <span class="post-date" title="2016-12-04 09:27:32">2016/12/04</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/03/linux/每天一个linux命令（3）-pwd命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（3）: pwd命令">每天一个linux命令（3）: pwd命令</span>
+        <span class="post-date" title="2016-12-03 09:15:52">2016/12/03</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/02/linux/每天一个linux命令（2）-cd命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（2）: cd命令">每天一个linux命令（2）: cd命令</span>
+        <span class="post-date" title="2016-12-02 11:04:55">2016/12/02</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/01/linux/每天一个linux命令（1）-ls命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（1）: ls命令">每天一个linux命令（1）: ls命令</span>
+        <span class="post-date" title="2016-12-01 09:38:59">2016/12/01</span>
+    </a>
+    
+    <a  class="数据库 "
+       href="/2016/10/12/database/PostgreSQL常用操作/"
+       data-tag="PostgreSQL"
+       data-author="" >
+        <span class="post-title" title="PostgreSQL常用操作">PostgreSQL常用操作</span>
+        <span class="post-date" title="2016-10-12 20:27:07">2016/10/12</span>
+    </a>
+    
+    <a  class="数据库 "
+       href="/2016/10/12/database/PostgreSQL初体验/"
+       data-tag="PostgreSQL"
+       data-author="" >
+        <span class="post-title" title="PostgreSQL初体验">PostgreSQL初体验</span>
+        <span class="post-date" title="2016-10-12 19:49:40">2016/10/12</span>
+    </a>
+    
+    <a  class="数据库 "
+       href="/2016/10/12/database/PostgreSQL的安装/"
+       data-tag="PostgreSQL"
+       data-author="" >
+        <span class="post-title" title="PostgreSQL的介绍与安装">PostgreSQL的介绍与安装</span>
+        <span class="post-date" title="2016-10-12 15:44:16">2016/10/12</span>
+    </a>
+    
+</nav>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-linux/每天一个linux命令（50）-grep命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+      
+      <time class="date" title="2017-01-18 10:12:46">2017-Jan-18</time>
+      
+      
+      <span>字数:1,855</span>
+      
+      
+        <span id="busuanzi_container_page_pv">
+            阅读量:<span id="busuanzi_value_page_pv"></span>
+        </span>
+      
+      
+      <span class="tag">
+        
+      <a href="javascript:" class="color3">linux命令</a>
+        
+      </span>
+      
+      
+      
+  </div>
+    
+        <h1 class="article-title">每天一个linux命令（50）: grep命令</h1>
+    
+    <div class="toc-ref">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令参数"><span class="toc-text">命令参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规则表达式"><span class="toc-text">规则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用实例"><span class="toc-text">使用实例</span></a></li></ol>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>　　Linux系统中grep命令是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹 配的行打印出来。grep全称是Global Regular Expression Print，表示全局正则表达式版本，它的使用权限是所有用户。<br><a id="more"></a><br>　　grep的工作方式是这样的，它在一个或多个文件中搜索字符串模板。如果模板包括空格，则必须被引用，模板后的所有字符串被看作文件名。搜索的结果被送到标准输出，不影响原文件内容。</p>
+<p>　　grep可用于shell脚本，因为grep通过返回一个状态值来说明搜索的状态，如果模板搜索成功，则返回0，如果搜索不成功，则返回1，如果搜索的文件不存在，则返回2。我们利用这些返回值就可进行一些自动化的文本处理工作。</p>
+<h3 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h3><pre><code class="bash">$ grep [option] pattern file
+</code></pre>
+<h3 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h3><p>　　用于过滤/搜索的特定字符。可使用正则表达式能多种命令配合使用，使用上十分灵活。</p>
+<h3 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-a <br>–text</td>
+<td style="text-align:left">不要忽略二进制的数据</td>
+</tr>
+<tr>
+<td style="text-align:left">-A&lt;显示行数&gt;  <br>–after-context=&lt;显示行数&gt;</td>
+<td style="text-align:left">除了显示符合范本样式的那一列之外，并显示该行之后的内容</td>
+</tr>
+<tr>
+<td style="text-align:left">-b <br>–byte-offset</td>
+<td style="text-align:left">在显示符合样式的那一行之前，标示出该行第一个字符的编号</td>
+</tr>
+<tr>
+<td style="text-align:left">-B&lt;显示行数&gt;  <br>–before-context=&lt;显示行数&gt;</td>
+<td style="text-align:left">除了显示符合样式的那一行之外，并显示该行之前的内容</td>
+</tr>
+<tr>
+<td style="text-align:left">-c    <br>–count</td>
+<td style="text-align:left">计算符合样式的列数</td>
+</tr>
+<tr>
+<td style="text-align:left">-C&lt;显示行数&gt;    <br>–context=&lt;显示行数&gt;或-&lt;显示行数&gt;</td>
+<td style="text-align:left">了显示符合样式的那一行之外，并显示该行之前后的内容</td>
+</tr>
+<tr>
+<td style="text-align:left">-d &lt;动作&gt;      <br>–directories=&lt;动作&gt;</td>
+<td style="text-align:left">当指定要查找的是目录而非文件时，必须使用这项参数，否则grep指令将回报信息并停止动作</td>
+</tr>
+<tr>
+<td style="text-align:left">-e&lt;范本样式&gt;  <br>–regexp=&lt;范本样式&gt;</td>
+<td style="text-align:left">指定字符串做为查找文件内容的样式</td>
+</tr>
+<tr>
+<td style="text-align:left">-E      <br>–extended-regexp</td>
+<td style="text-align:left">将样式为延伸的普通表示法来使用</td>
+</tr>
+<tr>
+<td style="text-align:left">-f&lt;规则文件&gt;  <br>–file=&lt;规则文件&gt;</td>
+<td style="text-align:left">指定规则文件，其内容含有一个或多个规则样式，让grep查找符合规则条件的文件内容，格式为每行一个规则样式</td>
+</tr>
+<tr>
+<td style="text-align:left">-F   <br>–fixed-regexp</td>
+<td style="text-align:left">将样式视为固定字符串的列表</td>
+</tr>
+<tr>
+<td style="text-align:left">-G   <br>–basic-regexp</td>
+<td style="text-align:left">样式视为普通的表示法来使用</td>
+</tr>
+<tr>
+<td style="text-align:left">-h   <br>–no-filename</td>
+<td style="text-align:left">在显示符合样式的那一行之前，不标示该行所属的文件名称</td>
+</tr>
+<tr>
+<td style="text-align:left">-H   <br>–with-filename</td>
+<td style="text-align:left">在显示符合样式的那一行之前，表示该行所属的文件名称</td>
+</tr>
+<tr>
+<td style="text-align:left">-i    <br>–ignore-case</td>
+<td style="text-align:left">忽略字符大小写的差别</td>
+</tr>
+<tr>
+<td style="text-align:left">-l    <br>–file-with-matches</td>
+<td style="text-align:left">列出文件内容符合指定的样式的文件名称</td>
+</tr>
+<tr>
+<td style="text-align:left">-L   <br>–files-without-match</td>
+<td style="text-align:left">列出文件内容不符合指定的样式的文件名称</td>
+</tr>
+<tr>
+<td style="text-align:left">-n   <br>–line-number</td>
+<td style="text-align:left">在显示符合样式的那一行之前，标示出该行的列数编号</td>
+</tr>
+<tr>
+<td style="text-align:left">-q   <br>–quiet或–silent</td>
+<td style="text-align:left">不显示任何信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-r   <br>–recursive</td>
+<td style="text-align:left">此参数的效果和指定“-d recurse”参数相同</td>
+</tr>
+<tr>
+<td style="text-align:left">-s   <br>–no-messages</td>
+<td style="text-align:left">不显示错误信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-v   <br>–revert-match</td>
+<td style="text-align:left">显示不包含匹配文本的所有行</td>
+</tr>
+<tr>
+<td style="text-align:left">-V   <br>–version</td>
+<td style="text-align:left">显示版本信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-w   <br>–word-regexp</td>
+<td style="text-align:left">只显示全字符合的列</td>
+</tr>
+<tr>
+<td style="text-align:left">-x    <br>–line-regexp</td>
+<td style="text-align:left">只显示全列符合的列</td>
+</tr>
+<tr>
+<td style="text-align:left">-y</td>
+<td style="text-align:left">此参数的效果和指定“-i”参数相同</td>
+</tr>
+</tbody>
+</table>
+<h3 id="规则表达式"><a href="#规则表达式" class="headerlink" title="规则表达式"></a>规则表达式</h3><p><strong>grep的规则表达式</strong><br>　　<code>^</code>  #锚定行的开始 如：<code>&#39;^grep&#39;</code>匹配所有以grep开头的行。<br>　　<code>$</code>  #锚定行的结束 如：<code>&#39;grep$&#39;</code>匹配所有以grep结尾的行。<br>　　<code>.</code>  #匹配一个非换行符的字符 如：<code>&#39;gr.p&#39;</code>匹配gr后接一个任意字符，然后是p。<br>　　<code>*</code>  #匹配零个或多个先前字符 如：<code>&#39;*grep&#39;</code>匹配所有一个或多个空格后紧跟grep的行。<br>　　<code>.*</code>   #一起用代表任意字符。<br>　　<code>[]</code>   #匹配一个指定范围内的字符，如<code>&#39;[Gg]rep&#39;</code>匹配Grep和grep。<br>　　<code>[^]</code>  #匹配一个不在指定范围内的字符，如：<code>&#39;[^A-FH-Z]rep&#39;</code>匹配不包含A-R和T-Z的一个字母开头，紧跟rep的行。<br>　　<code>\(..\)</code>  #标记匹配字符，如<code>&#39;\(love\)&#39;</code>，love被标记为1。<br>　　<code>\&lt;</code>      #锚定单词的开始，如:<code>&#39;\&lt;grep&#39;</code>匹配包含以grep开头的单词的行。<br>　　<code>\&gt;</code>      #锚定单词的结束，如<code>&#39;grep\&gt;&#39;</code>匹配包含以grep结尾的单词的行。<br>　　<code>x\{m\}</code>  #重复字符x，m次，如：<code>&#39;0\{5\}&#39;</code>匹配包含5个o的行。<br>　　<code>x\{m,\}</code>  #重复字符x,至少m次，如：<code>&#39;o\{5,\}&#39;</code>匹配至少有5个o的行。<br>　　<code>x\{m,n\}</code>  #重复字符x，至少m次，不多于n次，如：<code>&#39;o\{5,10\}&#39;</code>匹配5–10个o的行。<br>　　<code>\w</code>    #匹配文字和数字字符，也就是[A-Za-z0-9]，如：<code>&#39;G\w*p&#39;</code>匹配以G后跟零个或多个文字或数字字符，然后是p。<br>　　<code>\W</code>   #<code>\w</code>的反置形式，匹配一个或多个非单词字符，如点号句号等。<br>　　<code>\b</code>   #单词锁定符，如: <code>&#39;\bgrep\b&#39;</code>只匹配grep。<br><strong>POSIX字符</strong><br>　　为了在不同国家的字符编码中保持一至，POSIX(The Portable Operating System Interface)增加了特殊的字符类，如[:alnum:]是[A-Za-z0-9]的另一个写法。要把它们放到[]号内才能成为正则表达式，如[A- Za-z0-9]或[[:alnum:]]。在linux下的grep除fgrep外，都支持POSIX的字符类。<br>　　[:alnum:]    #文字数字字符<br>　　[:alpha:]    #文字字符<br>　　[:digit:]    #数字字符<br>　　[:graph:]    #非空字符（非空格、控制字符）<br>　　[:lower:]    #小写字符<br>　　[:cntrl:]    #控制字符<br>　　[:print:]    #非空字符（包括空格）<br>　　[:punct:]    #标点符号<br>　　[:space:]    #所有空白字符（新行，空格，制表符）<br>　　[:upper:]    #大写字符<br>　　[:xdigit:]   #十六进制数字（0-9，a-f，A-F）</p>
+<h3 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h3><p><strong><code>例一</code>：查找指定进程</strong></p>
+<pre><code class="bash">$ ps -ef|grep hexo
+faker    13401 19030  0 09:51 pts/2    00:00:15 hexo
+faker    15465 15449  0 10:34 pts/3    00:00:00 grep hexo
+</code></pre>
+<blockquote>
+<p><strong>说明：</strong><br>第一条记录是查找出的进程；第二条结果是grep进程本身，并非真正要找的进程。</p>
+</blockquote>
+<p><strong><code>例二</code>：查找指定进程数</strong></p>
+<pre><code class="bash">$ ps -ef|grep hexo -c
+$ ps -ef|grep -c hexo
+2
+</code></pre>
+<p><strong><code>例三</code>：从2.txt中读取关键词在1.txt中进行搜索</strong></p>
+<pre><code class="bash"># -n显示行号
+$ cat 1.txt | grep -nf 2.txt
+1:If you please draw me a sheep!
+2:What!
+</code></pre>
+<p><strong><code>例四</code>：从文件中查找关键词</strong></p>
+<pre><code class="bash">$ grep &#39;jump&#39; 1.txt
+I jumped to my feet,completely thunderstruck.
+</code></pre>
+<p><strong><code>例五</code>：从多个文件中查找关键词</strong></p>
+<pre><code class="bash">$ grep &#39;jump&#39; 1.txt 2.txt
+1.txt:I jumped to my feet,completely thunderstruck.
+2.txt:I jump
+</code></pre>
+<blockquote>
+<p><strong>说明：</strong><br>多文件时，输出查询到的信息内容行时，会把文件的命名在行最前面输出并且加上”:”作为标示符</p>
+</blockquote>
+<p><strong><code>例六</code>：grep不显示本身进程</strong></p>
+<pre><code class="bash">$ ps aux|grep \[s]sh
+$ ps aux | grep ssh | grep -v &quot;grep&quot;
+</code></pre>
+<p><strong><code>例七</code>：找出以u开头的行内容</strong></p>
+<pre><code class="bash">$ cat 1.txt |grep ^u
+If you please draw me a sheep!
+I jumped to my feet,completely thunderstruck.
+</code></pre>
+<p><strong><code>例八</code>：输出非u开头的行内容</strong></p>
+<pre><code class="bash">$ cat 1.txt | grep ^[^I]
+What!
+Draw me a sheep!
+</code></pre>
+<p><strong><code>例九</code>：输出以!结尾的行内容</strong></p>
+<pre><code class="bash">$ cat 1.txt |grep \!$
+If you please draw me a sheep!
+What!
+Draw me a sheep!
+</code></pre>
+<p><strong><code>例十</code>：显示包含sh或者at字符的内容行</strong></p>
+<pre><code class="bash">$ cat 1.txt |grep -E &quot;sh|at&quot;
+If you please draw me a sheep!
+What!
+Draw me a sheep!
+</code></pre>
+<p><strong><code>例十一</code>：显示当前目录下面以.txt 结尾的文件中的所有包含每个字符串至少有7个连续小写字符的字符串的行</strong></p>
+<pre><code class="bash">$ grep &#39;[a-z]\{7\}&#39; *.txt
+1.txt:I jumped to my feet,completely thunderstruck.
+3.txt:kdfkksjdf112123
+4.txt:kisdfsf
+</code></pre>
+
+      
+    </div>
+</article>
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span>文章标题:</span>每天一个linux命令（50）: grep命令</p>
+    <p><span>文章字数:</span><span class="post-count">1,855</span></p>
+    <p><span>本文作者:</span><a href="javascript:void(0)" title="牵猪的仓鼠">牵猪的仓鼠</a></p>
+    <p><span>发布时间:</span>2017-01-18, 10:12:46</p>
+    <p><span>最后更新:</span>2017-03-13, 12:11:01</p>
+    <span>原始链接:</span><a class="post-url" href="/2017/01/18/linux/每天一个linux命令（50）-grep命令/" title="每天一个linux命令（50）: grep命令">http://s.amlove.cn/2017/01/18/linux/每天一个linux命令（50）-grep命令/</a>
+    <p>
+        <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+    
+        <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/01/18/linux/每天一个linux命令（50）-grep命令/" data-title="每天一个linux命令（50）: grep命令" data-url="http://s.amlove.cn/2017/01/18/linux/每天一个linux命令（50）-grep命令/"></div>
+    <script>
+        var duoshuoQuery;
+        function loadComment() {
+            duoshuoQuery = {short_name: $(".theme_duoshuo_domain").val()};
+            var d = document, s = d.createElement('script');
+            s.src = 'https://static.duoshuo.com/embed.js?t='+new Date().getTime();
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2017-2027 s.amlove.cn</p>
+
+    </div>
+</div>
+<div class="full-toc">
+    <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+</div>
+<div class="acParent"></div>
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <img src="/img/alipay.jpg" title="扫码支持">
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+</body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
+<script src="/js/script.js"></script>
+<script>
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['@牵猪的仓鼠','#Hexo','#入门','#PostgreSQL','#vim','#ftp','#linux命令',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        
+            $(".post .pjax table").addClass("green_title");
+        
+        
+        $("input[name=pay]").on("click", function () {
+            $(".shang_payimg img").attr("src","/img/"+$("input[name=pay]:checked").val()+".jpg");
+        })
+        
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1;
+            var $numbering = $('<ul/>').addClass('pre-numbering').attr("unselectable","on");
+            $(this).addClass('has-numbering')
+                    .parent()
+                    .append($numbering);
+            for(i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+        
+        $.getScript("//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+    }
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+</script>
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 3px;
+        border: 1px solid #C3CCD0;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        padding-left: 40px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 9px 2px 12px 5px;
+        text-align: right;
+        color: #AAA;
+    }
+</style>
+
+</html>

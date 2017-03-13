@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>每天一个linux命令（41）: netstat命令 | 老鼠洞</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="netstat命令用于显示与IP、TCP、UDP和ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况。netstat是在内核中访问网络及相关信息的程序，它能提供TCP连接，TCP和UDP监听，进程内存管理的相关报告。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每天一个linux命令（41）: netstat命令">
+<meta property="og:url" content="http://s.amlove.cn/2017/01/10/linux/每天一个linux命令（41）-netstat命令/index.html">
+<meta property="og:site_name" content="老鼠洞">
+<meta property="og:description" content="netstat命令用于显示与IP、TCP、UDP和ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况。netstat是在内核中访问网络及相关信息的程序，它能提供TCP连接，TCP和UDP监听，进程内存管理的相关报告。">
+<meta property="og:updated_time" content="2017-03-13T04:11:01.643Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每天一个linux命令（41）: netstat命令">
+<meta name="twitter:description" content="netstat命令用于显示与IP、TCP、UDP和ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况。netstat是在内核中访问网络及相关信息的程序，它能提供TCP连接，TCP和UDP监听，进程内存管理的相关报告。">
+  
+  
+    <link rel="icon" href="/img/avatar.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link rel="stylesheet" href="/css/hl_theme/sublime.css">
+  
+  <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="/js/jquery.autocomplete.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+    <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_duoshuo_on" value="true">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_duoshuo_domain" value="amlove">
+</div>
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar" style="background-image:url(/img/avatar.jpg)"></a>
+<div class="author">
+    <span>牵猪的仓鼠</span>
+</div>
+<div class="icon">
+    
+    <a class="rss" title="rss" href="/atom.xml" target="_blank"></a>
+    
+    
+    <a class="github" title="github" href="https://github.com/amlove2" target="_blank"></a>
+    
+    
+    
+    
+    
+    
+    
+    <a class="weibo" title="weibo" href="http://weibo.com/vb2005xu" target="_blank"></a>
+    
+    
+    <a class="email" title="email" href="mailto:vb2005xu@sina.com"></a>
+    
+</div>
+<ul>
+    <li class="all active">全部文章</li>
+    
+    <li data-rel="Hexo教程"> Hexo教程 </li>
+    
+    <li data-rel="数据库"> 数据库 </li>
+    
+    <li data-rel="linux"> linux </li>
+    
+</ul>
+    </div>
+    <div class="nav-right">
+        <form onkeydown="if(event.keyCode==13){return false;}">
+    <input class="search" type="text" placeholder="Search..." autocomplete="off">
+    <i class="cross"></i>
+    <span>
+        <label for="tagswitch">Tags:</label>
+        <input id="tagswitch" type="checkbox">
+    </span>
+</form>
+<ul class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">入门</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">PostgreSQL</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">vim</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">ftp</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">linux命令</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</ul>
+
+<nav>
+    
+    <a id="top" class="Hexo教程 "
+       href="/2017/03/12/hello-world/"
+       data-tag="Hexo,入门"
+       data-author="" >
+        <span class="post-title" title="Hello World">Hello World</span>
+        <span class="post-date" title="2017-03-12 19:45:02">2017/03/12</span>
+    </a>
+    
+    <a id="top" class="Hexo教程 "
+       href="/2017/03/12/Hexo-新手记/"
+       data-tag="Hexo,入门"
+       data-author="" >
+        <span class="post-title" title="Hexo 新手记">Hexo 新手记</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a id="top" class="linux "
+       href="/2017/01/23/linux/每天一个linux命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令">每天一个linux命令</span>
+        <span class="post-date" title="2017-01-23 11:41:48">2017/01/23</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/03/06/linux/Vim命令速查表/"
+       data-tag="vim"
+       data-author="" >
+        <span class="post-title" title="Vim命令速查表">Vim命令速查表</span>
+        <span class="post-date" title="2017-03-06 11:23:36">2017/03/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/03/06/linux/如何在linux中搭建ftp服务/"
+       data-tag="ftp"
+       data-author="" >
+        <span class="post-title" title="如何在linux中搭建ftp服务">如何在linux中搭建ftp服务</span>
+        <span class="post-date" title="2017-03-06 08:47:48">2017/03/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/03/05/linux/每天一个linux命令（57）-sftp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（57）: sftp命令">每天一个linux命令（57）: sftp命令</span>
+        <span class="post-date" title="2017-03-05 16:29:38">2017/03/05</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/02/20/linux/每天一个linux命令（56）-tailf命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（56）: tailf命令">每天一个linux命令（56）: tailf命令</span>
+        <span class="post-date" title="2017-02-20 15:11:06">2017/02/20</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/23/linux/每天一个linux命令（55）-crontab命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（55）: crontab命令">每天一个linux命令（55）: crontab命令</span>
+        <span class="post-date" title="2017-01-23 10:44:50">2017/01/23</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/22/linux/每天一个linux命令（54）-at命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（54）: at命令">每天一个linux命令（54）: at命令</span>
+        <span class="post-date" title="2017-01-22 10:23:44">2017/01/22</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/21/linux/每天一个linux命令（53）-watch命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（53）: watch命令">每天一个linux命令（53）: watch命令</span>
+        <span class="post-date" title="2017-01-21 10:12:30">2017/01/21</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/20/linux/每天一个linux命令（52）-ps命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（52）: ps命令">每天一个linux命令（52）: ps命令</span>
+        <span class="post-date" title="2017-01-20 09:46:16">2017/01/20</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/19/linux/每天一个linux命令（51）-wc命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（51）: wc命令">每天一个linux命令（51）: wc命令</span>
+        <span class="post-date" title="2017-01-19 09:33:59">2017/01/19</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/18/linux/每天一个linux命令（50）-grep命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（50）: grep命令">每天一个linux命令（50）: grep命令</span>
+        <span class="post-date" title="2017-01-18 10:12:46">2017/01/18</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/17/linux/每天一个linux命令（49）-cal命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（49）: cal命令">每天一个linux命令（49）: cal命令</span>
+        <span class="post-date" title="2017-01-17 09:38:32">2017/01/17</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/16/linux/每天一个linux命令（48）-date命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（48）: date命令">每天一个linux命令（48）: date命令</span>
+        <span class="post-date" title="2017-01-16 14:39:27">2017/01/16</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/15/linux/每天一个linux命令（47）-diff命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（47）: diff命令">每天一个linux命令（47）: diff命令</span>
+        <span class="post-date" title="2017-01-15 14:08:08">2017/01/15</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/14/linux/每天一个linux命令（46）-ln命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（46）: ln命令">每天一个linux命令（46）: ln命令</span>
+        <span class="post-date" title="2017-01-14 11:00:33">2017/01/14</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/13/linux/每天一个linux命令（45）-scp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（45）: scp命令">每天一个linux命令（45）: scp命令</span>
+        <span class="post-date" title="2017-01-13 10:53:48">2017/01/13</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/12/linux/每天一个linux命令（44）-rcp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（44）: rcp命令">每天一个linux命令（44）: rcp命令</span>
+        <span class="post-date" title="2017-01-12 10:36:06">2017/01/12</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/12/linux/每天一个linux命令（43）-telnet命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（43）: telnet命令">每天一个linux命令（43）: telnet命令</span>
+        <span class="post-date" title="2017-01-12 09:24:01">2017/01/12</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/11/linux/每天一个linux命令（42）-ss命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（42）: ss命令">每天一个linux命令（42）: ss命令</span>
+        <span class="post-date" title="2017-01-11 10:34:47">2017/01/11</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/10/linux/每天一个linux命令（41）-netstat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（41）: netstat命令">每天一个linux命令（41）: netstat命令</span>
+        <span class="post-date" title="2017-01-10 09:54:16">2017/01/10</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/09/linux/每天一个linux命令（40）-traceroute命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（40）: traceroute命令">每天一个linux命令（40）: traceroute命令</span>
+        <span class="post-date" title="2017-01-09 10:56:53">2017/01/09</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/08/linux/每天一个linux命令（39）-ping命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（39）: ping命令">每天一个linux命令（39）: ping命令</span>
+        <span class="post-date" title="2017-01-08 10:24:50">2017/01/08</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/07/linux/每天一个linux命令（38）-route命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（38）: route命令">每天一个linux命令（38）: route命令</span>
+        <span class="post-date" title="2017-01-07 10:16:34">2017/01/07</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/06/linux/每天一个linux命令（37）-ifconfig命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（37）: ifconfig命令">每天一个linux命令（37）: ifconfig命令</span>
+        <span class="post-date" title="2017-01-06 09:57:01">2017/01/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/05/linux/每天一个linux命令（36）-lsof命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（36）: lsof命令">每天一个linux命令（36）: lsof命令</span>
+        <span class="post-date" title="2017-01-05 10:28:13">2017/01/05</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/04/linux/每天一个linux命令（35）-iostat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（35）: iostat命令">每天一个linux命令（35）: iostat命令</span>
+        <span class="post-date" title="2017-01-04 10:10:02">2017/01/04</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/03/linux/每天一个linux命令（34）-vmstat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（34）: vmstat命令">每天一个linux命令（34）: vmstat命令</span>
+        <span class="post-date" title="2017-01-03 09:46:57">2017/01/03</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/02/linux/每天一个linux命令（33）-free命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（33）: free命令">每天一个linux命令（33）: free命令</span>
+        <span class="post-date" title="2017-01-02 21:43:26">2017/01/02</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/01/linux/每天一个linux命令（32）-top命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（32）: top命令">每天一个linux命令（32）: top命令</span>
+        <span class="post-date" title="2017-01-01 19:31:28">2017/01/01</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/31/linux/每天一个linux命令（31）-du命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（31）: du命令">每天一个linux命令（31）: du命令</span>
+        <span class="post-date" title="2016-12-31 14:36:01">2016/12/31</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/30/linux/每天一个linux命令（30）-df命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（30）: df命令">每天一个linux命令（30）: df命令</span>
+        <span class="post-date" title="2016-12-30 14:23:31">2016/12/30</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/29/linux/每天一个linux命令（29）-etc-group文件详解/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（29）: /etc/group文件详解">每天一个linux命令（29）: /etc/group文件详解</span>
+        <span class="post-date" title="2016-12-29 14:13:05">2016/12/29</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/28/linux/每天一个linux命令（28）-chown命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（28）: chown命令">每天一个linux命令（28）: chown命令</span>
+        <span class="post-date" title="2016-12-28 09:51:30">2016/12/28</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/27/linux/每天一个linux命令（27）-chgrp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（27）: chgrp命令">每天一个linux命令（27）: chgrp命令</span>
+        <span class="post-date" title="2016-12-27 09:40:06">2016/12/27</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/26/linux/每天一个linux命令（26）-chmod命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（26）: chmod命令">每天一个linux命令（26）: chmod命令</span>
+        <span class="post-date" title="2016-12-26 20:22:43">2016/12/26</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/25/linux/每天一个linux命令（25）-gzip命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（25）: gzip命令">每天一个linux命令（25）: gzip命令</span>
+        <span class="post-date" title="2016-12-25 16:55:15">2016/12/25</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/24/linux/每天一个linux命令（24）-tar命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（24）: tar命令">每天一个linux命令（24）: tar命令</span>
+        <span class="post-date" title="2016-12-24 10:24:17">2016/12/24</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/23/linux/每天一个linux命令（23）-用SecureCRT来上传和下载文件/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（23）: 用SecureCRT来上传和下载文件">每天一个linux命令（23）: 用SecureCRT来上传和下载文件</span>
+        <span class="post-date" title="2016-12-23 09:48:15">2016/12/23</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/22/linux/每天一个linux命令（22）-find命令的参数详解/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（22）: find命令的参数详解">每天一个linux命令（22）: find命令的参数详解</span>
+        <span class="post-date" title="2016-12-22 11:44:14">2016/12/22</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/21/linux/每天一个linux命令（21）-find命令之xargs/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（21）: find命令之xargs">每天一个linux命令（21）: find命令之xargs</span>
+        <span class="post-date" title="2016-12-21 11:08:01">2016/12/21</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/20/linux/每天一个linux命令（20）-find命令之exec/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（20）: find命令之exec">每天一个linux命令（20）: find命令之exec</span>
+        <span class="post-date" title="2016-12-20 10:47:32">2016/12/20</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/19/linux/每天一个linux命令（19）-find命令概览/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（19）: find命令概览">每天一个linux命令（19）: find命令概览</span>
+        <span class="post-date" title="2016-12-19 15:19:10">2016/12/19</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/18/linux/每天一个linux命令（18）-locate命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（18）: locate命令">每天一个linux命令（18）: locate命令</span>
+        <span class="post-date" title="2016-12-18 15:09:28">2016/12/18</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/17/linux/每天一个linux命令（17）-whereis命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（17）: whereis命令">每天一个linux命令（17）: whereis命令</span>
+        <span class="post-date" title="2016-12-17 10:42:58">2016/12/17</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/16/linux/每天一个linux命令（16）-which命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（16）: which命令">每天一个linux命令（16）: which命令</span>
+        <span class="post-date" title="2016-12-16 11:25:49">2016/12/16</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/15/linux/每天一个linux命令（15）-tail命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（15）: tail命令">每天一个linux命令（15）: tail命令</span>
+        <span class="post-date" title="2016-12-15 15:00:26">2016/12/15</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/14/linux/每天一个linux命令（14）-head命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（14）: head命令">每天一个linux命令（14）: head命令</span>
+        <span class="post-date" title="2016-12-14 14:35:49">2016/12/14</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/13/linux/每天一个linux命令（13）-less命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（13）: less命令">每天一个linux命令（13）: less命令</span>
+        <span class="post-date" title="2016-12-13 21:46:14">2016/12/13</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/12/linux/每天一个linux命令（12）-more命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（12）: more命令">每天一个linux命令（12）: more命令</span>
+        <span class="post-date" title="2016-12-12 21:29:39">2016/12/12</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/11/linux/每天一个linux命令（11）-nl命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（11）: nl命令">每天一个linux命令（11）: nl命令</span>
+        <span class="post-date" title="2016-12-11 21:11:48">2016/12/11</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/10/linux/每天一个linux命令（10）-cat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（10）: cat命令">每天一个linux命令（10）: cat命令</span>
+        <span class="post-date" title="2016-12-10 10:52:50">2016/12/10</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/09/linux/每天一个linux命令（9）-touch命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（9）: touch命令">每天一个linux命令（9）: touch命令</span>
+        <span class="post-date" title="2016-12-09 07:15:12">2016/12/09</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/08/linux/每天一个linux命令（8）-cp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（8）: cp命令">每天一个linux命令（8）: cp命令</span>
+        <span class="post-date" title="2016-12-08 16:31:43">2016/12/08</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/07/linux/每天一个linux命令（7）-mv命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（7）: mv命令">每天一个linux命令（7）: mv命令</span>
+        <span class="post-date" title="2016-12-07 15:55:20">2016/12/07</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/06/linux/每天一个linux命令（6）-rmdir命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（6）: rmdir命令">每天一个linux命令（6）: rmdir命令</span>
+        <span class="post-date" title="2016-12-06 15:24:32">2016/12/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/05/linux/每天一个linux命令（5）-rm命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（5）: rm命令">每天一个linux命令（5）: rm命令</span>
+        <span class="post-date" title="2016-12-05 13:40:38">2016/12/05</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/04/linux/每天一个linux命令（4）-mkdir命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（4）: mkdir命令">每天一个linux命令（4）: mkdir命令</span>
+        <span class="post-date" title="2016-12-04 09:27:32">2016/12/04</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/03/linux/每天一个linux命令（3）-pwd命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（3）: pwd命令">每天一个linux命令（3）: pwd命令</span>
+        <span class="post-date" title="2016-12-03 09:15:52">2016/12/03</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/02/linux/每天一个linux命令（2）-cd命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（2）: cd命令">每天一个linux命令（2）: cd命令</span>
+        <span class="post-date" title="2016-12-02 11:04:55">2016/12/02</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/01/linux/每天一个linux命令（1）-ls命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（1）: ls命令">每天一个linux命令（1）: ls命令</span>
+        <span class="post-date" title="2016-12-01 09:38:59">2016/12/01</span>
+    </a>
+    
+    <a  class="数据库 "
+       href="/2016/10/12/database/PostgreSQL常用操作/"
+       data-tag="PostgreSQL"
+       data-author="" >
+        <span class="post-title" title="PostgreSQL常用操作">PostgreSQL常用操作</span>
+        <span class="post-date" title="2016-10-12 20:27:07">2016/10/12</span>
+    </a>
+    
+    <a  class="数据库 "
+       href="/2016/10/12/database/PostgreSQL初体验/"
+       data-tag="PostgreSQL"
+       data-author="" >
+        <span class="post-title" title="PostgreSQL初体验">PostgreSQL初体验</span>
+        <span class="post-date" title="2016-10-12 19:49:40">2016/10/12</span>
+    </a>
+    
+    <a  class="数据库 "
+       href="/2016/10/12/database/PostgreSQL的安装/"
+       data-tag="PostgreSQL"
+       data-author="" >
+        <span class="post-title" title="PostgreSQL的介绍与安装">PostgreSQL的介绍与安装</span>
+        <span class="post-date" title="2016-10-12 15:44:16">2016/10/12</span>
+    </a>
+    
+</nav>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-linux/每天一个linux命令（41）-netstat命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+      
+      <time class="date" title="2017-01-10 09:54:16">2017-Jan-10</time>
+      
+      
+      <span>字数:2,006</span>
+      
+      
+        <span id="busuanzi_container_page_pv">
+            阅读量:<span id="busuanzi_value_page_pv"></span>
+        </span>
+      
+      
+      <span class="tag">
+        
+      <a href="javascript:" class="color3">linux命令</a>
+        
+      </span>
+      
+      
+      
+  </div>
+    
+        <h1 class="article-title">每天一个linux命令（41）: netstat命令</h1>
+    
+    <div class="toc-ref">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令参数"><span class="toc-text">命令参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用实例"><span class="toc-text">使用实例</span></a></li></ol>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>　　netstat命令用于显示与IP、TCP、UDP和ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况。netstat是在内核中访问网络及相关信息的程序，它能提供TCP连接，TCP和UDP监听，进程内存管理的相关报告。<br><a id="more"></a><br>　　如果你的计算机有时候接收到的数据报导致出错数据或故障，你不必感到奇怪，TCP/IP可以容许这些类型的错误，并能够自动重发数据报。但如果累计的出错情况数目占到所接收的IP数据报相当大的百分比，或者它的数目正迅速增加，那么你就应该使用netstat查一查为什么会出现这些情况了。</p>
+<h3 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h3><pre><code class="bash">$ netstat [-acCeFghilMnNoprstuvVwx][-A&lt;网络类型&gt;][--ip]
+</code></pre>
+<h3 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h3><p>　　netstat用于显示与IP、TCP、UDP和ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况。</p>
+<h3 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-a或–all</td>
+<td style="text-align:left">显示所有连线中的Socket</td>
+</tr>
+<tr>
+<td style="text-align:left">-A&lt;网络类型&gt;或–&lt;网络类型&gt;</td>
+<td style="text-align:left">列出该网络类型连线中的相关地址</td>
+</tr>
+<tr>
+<td style="text-align:left">-c或–continuous</td>
+<td style="text-align:left">持续列出网络状态</td>
+</tr>
+<tr>
+<td style="text-align:left">-C或–cache</td>
+<td style="text-align:left">显示路由器配置的快取信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-e或–extend</td>
+<td style="text-align:left">显示网络其他相关信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-F或–fib</td>
+<td style="text-align:left">显示FIB</td>
+</tr>
+<tr>
+<td style="text-align:left">-g或–groups</td>
+<td style="text-align:left">显示多重广播功能群组组员名单</td>
+</tr>
+<tr>
+<td style="text-align:left">-h或–help</td>
+<td style="text-align:left">在线帮助</td>
+</tr>
+<tr>
+<td style="text-align:left">-i或–interfaces</td>
+<td style="text-align:left">显示网络界面信息表单</td>
+</tr>
+<tr>
+<td style="text-align:left">-l或–listening</td>
+<td style="text-align:left">显示监控中的服务器的Socket</td>
+</tr>
+<tr>
+<td style="text-align:left">-M或–masquerade</td>
+<td style="text-align:left">显示伪装的网络连线</td>
+</tr>
+<tr>
+<td style="text-align:left">-n或–numeric</td>
+<td style="text-align:left">直接使用IP地址，而不通过域名服务器</td>
+</tr>
+<tr>
+<td style="text-align:left">-N或–netlink或–symbolic</td>
+<td style="text-align:left">显示网络硬件外围设备的符号连接名称</td>
+</tr>
+<tr>
+<td style="text-align:left">-o或–timers</td>
+<td style="text-align:left">显示计时器</td>
+</tr>
+<tr>
+<td style="text-align:left">-p或–programs</td>
+<td style="text-align:left">显示正在使用Socket的程序识别码和程序名称</td>
+</tr>
+<tr>
+<td style="text-align:left">-r或–route</td>
+<td style="text-align:left">显示Routing Table</td>
+</tr>
+<tr>
+<td style="text-align:left">-s或–statistice</td>
+<td style="text-align:left">显示网络工作信息统计表</td>
+</tr>
+<tr>
+<td style="text-align:left">-t或–tcp</td>
+<td style="text-align:left">显示TCP传输协议的连线状况</td>
+</tr>
+<tr>
+<td style="text-align:left">-u或–udp</td>
+<td style="text-align:left">显示UDP传输协议的连线状况</td>
+</tr>
+<tr>
+<td style="text-align:left">-v或–verbose</td>
+<td style="text-align:left">显示指令执行过程</td>
+</tr>
+<tr>
+<td style="text-align:left">-V或–version</td>
+<td style="text-align:left">显示版本信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-w或–raw</td>
+<td style="text-align:left">显示RAW传输协议的连线状况</td>
+</tr>
+<tr>
+<td style="text-align:left">-x或–unix</td>
+<td style="text-align:left">此参数的效果和指定”-A unix”参数相同</td>
+</tr>
+<tr>
+<td style="text-align:left">–ip或–inet</td>
+<td style="text-align:left">此参数的效果和指定”-A inet”参数相同</td>
+</tr>
+</tbody>
+</table>
+<h3 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h3><p><strong><code>例一</code>：无参数使用</strong></p>
+<pre><code class="bash">$ netstat
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address               Foreign Address             State      
+tcp        0    268 192.168.120.204:ssh         10.2.0.68:62420             ESTABLISHED
+udp        0      0 192.168.120.204:4371        10.58.119.119:domain        ESTABLISHED
+Active UNIX domain sockets (w/o servers)
+Proto RefCnt Flags       Type       State         I-Node Path
+unix  2      [ ]         DGRAM                    1491   @/org/kernel/udev/udevd
+unix  4      [ ]         DGRAM                    7337   /dev/log
+unix  2      [ ]         DGRAM                    708823
+unix  2      [ ]         DGRAM                    7539   
+unix  3      [ ]         STREAM     CONNECTED     7287   
+unix  3      [ ]         STREAM     CONNECTED     7286
+</code></pre>
+<blockquote>
+<p><strong>说明：</strong><br>　　从整体上看，netstat的输出结果可以分为两个部分：<br>　　一个是Active Internet connections，称为有源TCP连接，其中”Recv-Q”和”Send-Q”指的是接收队列和发送队列。这些数字一般都应该是0。如果不是则表示软件包正在队列中堆积。这种情况只能在非常少的情况见到。<br>　　另一个是Active UNIX domain sockets，称为有源Unix域套接口(和网络套接字一样，但是只能用于本机通信，性能可以提高一倍)。<br>　　Proto显示连接使用的协议,RefCnt表示连接到本套接口上的进程号,Types显示套接口的类型,State显示套接口当前的状态,Path表示连接到套接口的其它进程使用的路径名。<br><strong>套接口类型：</strong><br>　　-t ：TCP<br>　　-u ：UDP<br>　　-raw ：RAW类型<br>　　–unix ：UNIX域类型<br>　　–ax25 ：AX25类型<br>　　–ipx ：ipx类型<br>　　–netrom ：netrom类型<br><strong>状态说明：</strong><br>　　LISTEN：侦听来自远方的TCP端口的连接请求<br>　　SYN-SENT：再发送连接请求后等待匹配的连接请求（如果有大量这样的状态包，检查是否中招了）<br>　　SYN-RECEIVED：再收到和发送一个连接请求后等待对方对连接请求的确认（如有大量此状态，估计被flood攻击了）<br>　　ESTABLISHED：代表一个打开的连接<br>　　FIN-WAIT-1：等待远程TCP连接中断请求，或先前的连接中断请求的确认<br>　　FIN-WAIT-2：从远程TCP等待连接中断请求<br>　　CLOSE-WAIT：等待从本地用户发来的连接中断请求<br>　　CLOSING：等待远程TCP对连接中断的确认<br>　　LAST-ACK：等待原来的发向远程TCP的连接中断请求的确认（不是什么好东西，此项出现，检查是否被攻击）<br>　　TIME-WAIT：等待足够的时间以确保远程TCP接收到连接中断请求的确认<br>　　CLOSED：没有任何连接状态</p>
+</blockquote>
+<p><strong><code>例二</code>：列出所有端口</strong></p>
+<pre><code class="bash">$ netstat -a
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address               Foreign Address             State      
+tcp        0      0 localhost:smux              *:*                         LISTEN      
+tcp        0      0 *:svn                       *:*                         LISTEN      
+tcp        0      0 *:ssh                       *:*                         LISTEN      
+tcp        0    284 192.168.120.204:ssh         10.2.0.68:62420             ESTABLISHED
+udp        0      0 localhost:syslog            *:*                                     
+udp        0      0 *:snmp                      *:*                                     
+Active UNIX domain sockets (servers and established)
+Proto RefCnt Flags       Type       State         I-Node Path
+unix  2      [ ACC ]     STREAM     LISTENING     708833 /tmp/ssh-yKnDB15725/agent.15725
+unix  2      [ ACC ]     STREAM     LISTENING     7296   /var/run/audispd_events
+unix  2      [ ]         DGRAM                    1491   @/org/kernel/udev/udevd
+unix  4      [ ]         DGRAM                    7337   /dev/log
+unix  2      [ ]         DGRAM                    708823
+unix  2      [ ]         DGRAM                    7539   
+unix  3      [ ]         STREAM     CONNECTED     7287   
+unix  3      [ ]         STREAM     CONNECTED     7286
+</code></pre>
+<blockquote>
+<p><strong>说明：</strong><br>　　显示一个所有的有效连接信息列表，包括已建立的连接（ESTABLISHED），也包括监听连接请（LISTENING）的那些连接</p>
+</blockquote>
+<p><strong><code>例三</code>：显示当前UDP连接状况</strong></p>
+<pre><code class="bash">$ netstat -nu
+</code></pre>
+<p><strong><code>例四</code>：显示UDP端口号的使用情况</strong></p>
+<pre><code class="bash">$ netstat -apu
+</code></pre>
+<p><strong><code>例五</code>：显示UDP端口号的使用情况</strong></p>
+<pre><code class="bash">$ netstat -i
+</code></pre>
+<p><strong><code>例六</code>：显示组播组的关系</strong></p>
+<pre><code class="bash">$ netstat -g
+</code></pre>
+<p><strong><code>例七</code>：显示网络统计信息</strong></p>
+<pre><code class="bash">$ netstat -s
+</code></pre>
+<blockquote>
+<p><strong>说明：</strong><br>　　按照各个协议分别显示其统计数据。如果我们的应用程序（如Web浏览器）运行速度比较慢，或者不能显示Web页之类的数据，那么我们就可以用本选项来查看一下所显示的信息。我们需要仔细查看统计数据的各行，找到出错的关键字，进而确定问题所在。</p>
+</blockquote>
+<p><strong><code>例八</code>：显示监听的套接口</strong></p>
+<pre><code class="bash">$ netstat -l
+</code></pre>
+<p><strong><code>例九</code>：显示所有已建立的有效连接</strong></p>
+<pre><code class="bash">$ netstat -n
+</code></pre>
+<p><strong><code>例十</code>：显示关于以太网的统计数据</strong></p>
+<pre><code class="bash">$ netstat -e
+</code></pre>
+<blockquote>
+<p><strong>说明：</strong><br>　　用于显示关于以太网的统计数据。它列出的项目包括传送的数据报的总字节数、错误数、删除数、数据报的数量和广播的数量。这些统计数据既有发送的数据报数量，也有接收的数据报数量。这个选项可以用来统计一些基本的网络流量）</p>
+</blockquote>
+<p><strong><code>例十一</code>：显示关于路由表的信息</strong></p>
+<pre><code class="bash">$ netstat -r
+</code></pre>
+<p><strong><code>例十二</code>：列出所有 tcp 端口</strong></p>
+<pre><code class="bash">$ netstat -at
+</code></pre>
+<p><strong><code>例十三</code>：统计机器中网络连接各个状态个数</strong></p>
+<pre><code class="bash">$ netstat -a | awk &#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39;
+</code></pre>
+<p><strong><code>例十四</code>：把状态全都取出来后使用uniq -c统计后再进行排序</strong></p>
+<pre><code class="bash">$ netstat -nat |awk &#39;{print $6}&#39;|sort|uniq -c
+</code></pre>
+<p><strong><code>例十五</code>：查看连接某服务端口最多的的IP地址</strong></p>
+<pre><code class="bash">$ netstat -nat | grep &quot;192.168.120.20:16067&quot; |awk &#39;{print $5}&#39;|awk -F: &#39;{print $4}&#39;|sort|uniq -c|sort -nr|head -20
+</code></pre>
+<p><strong><code>例十六</code>：找出程序运行的端口</strong></p>
+<pre><code class="bash">$ netstat -ap | grep ssh
+</code></pre>
+<p><strong><code>例十七</code>：在 netstat 输出中显示 PID 和进程名称</strong></p>
+<pre><code class="bash">$ netstat -pt
+</code></pre>
+<blockquote>
+<p><strong>说明：</strong><br>　　netstat -p 可以与其它开关一起使用，就可以添加 “PID/进程名称” 到 netstat 输出中，这样 debugging 的时候可以很方便的发现特定端口运行的程序</p>
+</blockquote>
+<p><strong><code>例十八</code>：找出运行在指定端口的进程</strong></p>
+<pre><code class="bash">$ netstat -anpt | grep &#39;:4000&#39;
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+tcp        0      0 0.0.0.0:4000            0.0.0.0:*               LISTEN      5362/hexo           
+tcp        0      0 127.0.0.1:4000          127.0.0.1:45884         ESTABLISHED 5362/hexo           
+tcp        0      0 127.0.0.1:4000          127.0.0.1:45886         ESTABLISHED 5362/hexo
+</code></pre>
+<blockquote>
+<p><strong>说明：</strong><br>　　运行在端口4000的进程id为5362，再通过ps命令就可以找到具体的应用程序了</p>
+</blockquote>
+
+      
+    </div>
+</article>
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span>文章标题:</span>每天一个linux命令（41）: netstat命令</p>
+    <p><span>文章字数:</span><span class="post-count">2,006</span></p>
+    <p><span>本文作者:</span><a href="javascript:void(0)" title="牵猪的仓鼠">牵猪的仓鼠</a></p>
+    <p><span>发布时间:</span>2017-01-10, 09:54:16</p>
+    <p><span>最后更新:</span>2017-03-13, 12:11:01</p>
+    <span>原始链接:</span><a class="post-url" href="/2017/01/10/linux/每天一个linux命令（41）-netstat命令/" title="每天一个linux命令（41）: netstat命令">http://s.amlove.cn/2017/01/10/linux/每天一个linux命令（41）-netstat命令/</a>
+    <p>
+        <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+    
+        <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/01/10/linux/每天一个linux命令（41）-netstat命令/" data-title="每天一个linux命令（41）: netstat命令" data-url="http://s.amlove.cn/2017/01/10/linux/每天一个linux命令（41）-netstat命令/"></div>
+    <script>
+        var duoshuoQuery;
+        function loadComment() {
+            duoshuoQuery = {short_name: $(".theme_duoshuo_domain").val()};
+            var d = document, s = d.createElement('script');
+            s.src = 'https://static.duoshuo.com/embed.js?t='+new Date().getTime();
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2017-2027 s.amlove.cn</p>
+
+    </div>
+</div>
+<div class="full-toc">
+    <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+</div>
+<div class="acParent"></div>
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <img src="/img/alipay.jpg" title="扫码支持">
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+</body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
+<script src="/js/script.js"></script>
+<script>
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['@牵猪的仓鼠','#Hexo','#入门','#PostgreSQL','#vim','#ftp','#linux命令',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        
+            $(".post .pjax table").addClass("green_title");
+        
+        
+        $("input[name=pay]").on("click", function () {
+            $(".shang_payimg img").attr("src","/img/"+$("input[name=pay]:checked").val()+".jpg");
+        })
+        
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1;
+            var $numbering = $('<ul/>').addClass('pre-numbering').attr("unselectable","on");
+            $(this).addClass('has-numbering')
+                    .parent()
+                    .append($numbering);
+            for(i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+        
+        $.getScript("//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+    }
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+</script>
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 3px;
+        border: 1px solid #C3CCD0;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        padding-left: 40px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 9px 2px 12px 5px;
+        text-align: right;
+        color: #AAA;
+    }
+</style>
+
+</html>

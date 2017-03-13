@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Vim命令速查表 | 老鼠洞</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="去年上半年开始全面使用linux进行开发和娱乐了，现在已经回不去windows了。
+话归正传，在linux上一直使用vim，慢慢熟悉了它的命令，才终于领悟了什么是编辑器之神。
+最近抽空整理了这份速查表，收获颇丰，并分享给大家。
+进入vim
+
+
+命令
+描述
+
+
+
+
+vim filename
+打开或新建文件,并将光标置于第一行首
+
+
+vim +n filename
+打开文件，并将光标置于第n行首">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim命令速查表">
+<meta property="og:url" content="http://s.amlove.cn/2017/03/06/linux/Vim命令速查表/index.html">
+<meta property="og:site_name" content="老鼠洞">
+<meta property="og:description" content="去年上半年开始全面使用linux进行开发和娱乐了，现在已经回不去windows了。
+话归正传，在linux上一直使用vim，慢慢熟悉了它的命令，才终于领悟了什么是编辑器之神。
+最近抽空整理了这份速查表，收获颇丰，并分享给大家。
+进入vim
+
+
+命令
+描述
+
+
+
+
+vim filename
+打开或新建文件,并将光标置于第一行首
+
+
+vim +n filename
+打开文件，并将光标置于第n行首">
+<meta property="og:updated_time" content="2017-03-13T04:11:01.625Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vim命令速查表">
+<meta name="twitter:description" content="去年上半年开始全面使用linux进行开发和娱乐了，现在已经回不去windows了。
+话归正传，在linux上一直使用vim，慢慢熟悉了它的命令，才终于领悟了什么是编辑器之神。
+最近抽空整理了这份速查表，收获颇丰，并分享给大家。
+进入vim
+
+
+命令
+描述
+
+
+
+
+vim filename
+打开或新建文件,并将光标置于第一行首
+
+
+vim +n filename
+打开文件，并将光标置于第n行首">
+  
+  
+    <link rel="icon" href="/img/avatar.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link rel="stylesheet" href="/css/hl_theme/sublime.css">
+  
+  <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="/js/jquery.autocomplete.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+    <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_duoshuo_on" value="true">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_duoshuo_domain" value="amlove">
+</div>
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar" style="background-image:url(/img/avatar.jpg)"></a>
+<div class="author">
+    <span>牵猪的仓鼠</span>
+</div>
+<div class="icon">
+    
+    <a class="rss" title="rss" href="/atom.xml" target="_blank"></a>
+    
+    
+    <a class="github" title="github" href="https://github.com/amlove2" target="_blank"></a>
+    
+    
+    
+    
+    
+    
+    
+    <a class="weibo" title="weibo" href="http://weibo.com/vb2005xu" target="_blank"></a>
+    
+    
+    <a class="email" title="email" href="mailto:vb2005xu@sina.com"></a>
+    
+</div>
+<ul>
+    <li class="all active">全部文章</li>
+    
+    <li data-rel="Hexo教程"> Hexo教程 </li>
+    
+    <li data-rel="数据库"> 数据库 </li>
+    
+    <li data-rel="linux"> linux </li>
+    
+</ul>
+    </div>
+    <div class="nav-right">
+        <form onkeydown="if(event.keyCode==13){return false;}">
+    <input class="search" type="text" placeholder="Search..." autocomplete="off">
+    <i class="cross"></i>
+    <span>
+        <label for="tagswitch">Tags:</label>
+        <input id="tagswitch" type="checkbox">
+    </span>
+</form>
+<ul class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">入门</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">PostgreSQL</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">vim</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">ftp</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">linux命令</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</ul>
+
+<nav>
+    
+    <a id="top" class="Hexo教程 "
+       href="/2017/03/12/hello-world/"
+       data-tag="Hexo,入门"
+       data-author="" >
+        <span class="post-title" title="Hello World">Hello World</span>
+        <span class="post-date" title="2017-03-12 19:45:02">2017/03/12</span>
+    </a>
+    
+    <a id="top" class="Hexo教程 "
+       href="/2017/03/12/Hexo-新手记/"
+       data-tag="Hexo,入门"
+       data-author="" >
+        <span class="post-title" title="Hexo 新手记">Hexo 新手记</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a id="top" class="linux "
+       href="/2017/01/23/linux/每天一个linux命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令">每天一个linux命令</span>
+        <span class="post-date" title="2017-01-23 11:41:48">2017/01/23</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/03/06/linux/Vim命令速查表/"
+       data-tag="vim"
+       data-author="" >
+        <span class="post-title" title="Vim命令速查表">Vim命令速查表</span>
+        <span class="post-date" title="2017-03-06 11:23:36">2017/03/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/03/06/linux/如何在linux中搭建ftp服务/"
+       data-tag="ftp"
+       data-author="" >
+        <span class="post-title" title="如何在linux中搭建ftp服务">如何在linux中搭建ftp服务</span>
+        <span class="post-date" title="2017-03-06 08:47:48">2017/03/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/03/05/linux/每天一个linux命令（57）-sftp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（57）: sftp命令">每天一个linux命令（57）: sftp命令</span>
+        <span class="post-date" title="2017-03-05 16:29:38">2017/03/05</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/02/20/linux/每天一个linux命令（56）-tailf命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（56）: tailf命令">每天一个linux命令（56）: tailf命令</span>
+        <span class="post-date" title="2017-02-20 15:11:06">2017/02/20</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/23/linux/每天一个linux命令（55）-crontab命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（55）: crontab命令">每天一个linux命令（55）: crontab命令</span>
+        <span class="post-date" title="2017-01-23 10:44:50">2017/01/23</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/22/linux/每天一个linux命令（54）-at命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（54）: at命令">每天一个linux命令（54）: at命令</span>
+        <span class="post-date" title="2017-01-22 10:23:44">2017/01/22</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/21/linux/每天一个linux命令（53）-watch命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（53）: watch命令">每天一个linux命令（53）: watch命令</span>
+        <span class="post-date" title="2017-01-21 10:12:30">2017/01/21</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/20/linux/每天一个linux命令（52）-ps命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（52）: ps命令">每天一个linux命令（52）: ps命令</span>
+        <span class="post-date" title="2017-01-20 09:46:16">2017/01/20</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/19/linux/每天一个linux命令（51）-wc命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（51）: wc命令">每天一个linux命令（51）: wc命令</span>
+        <span class="post-date" title="2017-01-19 09:33:59">2017/01/19</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/18/linux/每天一个linux命令（50）-grep命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（50）: grep命令">每天一个linux命令（50）: grep命令</span>
+        <span class="post-date" title="2017-01-18 10:12:46">2017/01/18</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/17/linux/每天一个linux命令（49）-cal命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（49）: cal命令">每天一个linux命令（49）: cal命令</span>
+        <span class="post-date" title="2017-01-17 09:38:32">2017/01/17</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/16/linux/每天一个linux命令（48）-date命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（48）: date命令">每天一个linux命令（48）: date命令</span>
+        <span class="post-date" title="2017-01-16 14:39:27">2017/01/16</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/15/linux/每天一个linux命令（47）-diff命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（47）: diff命令">每天一个linux命令（47）: diff命令</span>
+        <span class="post-date" title="2017-01-15 14:08:08">2017/01/15</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/14/linux/每天一个linux命令（46）-ln命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（46）: ln命令">每天一个linux命令（46）: ln命令</span>
+        <span class="post-date" title="2017-01-14 11:00:33">2017/01/14</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/13/linux/每天一个linux命令（45）-scp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（45）: scp命令">每天一个linux命令（45）: scp命令</span>
+        <span class="post-date" title="2017-01-13 10:53:48">2017/01/13</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/12/linux/每天一个linux命令（44）-rcp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（44）: rcp命令">每天一个linux命令（44）: rcp命令</span>
+        <span class="post-date" title="2017-01-12 10:36:06">2017/01/12</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/12/linux/每天一个linux命令（43）-telnet命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（43）: telnet命令">每天一个linux命令（43）: telnet命令</span>
+        <span class="post-date" title="2017-01-12 09:24:01">2017/01/12</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/11/linux/每天一个linux命令（42）-ss命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（42）: ss命令">每天一个linux命令（42）: ss命令</span>
+        <span class="post-date" title="2017-01-11 10:34:47">2017/01/11</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/10/linux/每天一个linux命令（41）-netstat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（41）: netstat命令">每天一个linux命令（41）: netstat命令</span>
+        <span class="post-date" title="2017-01-10 09:54:16">2017/01/10</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/09/linux/每天一个linux命令（40）-traceroute命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（40）: traceroute命令">每天一个linux命令（40）: traceroute命令</span>
+        <span class="post-date" title="2017-01-09 10:56:53">2017/01/09</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/08/linux/每天一个linux命令（39）-ping命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（39）: ping命令">每天一个linux命令（39）: ping命令</span>
+        <span class="post-date" title="2017-01-08 10:24:50">2017/01/08</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/07/linux/每天一个linux命令（38）-route命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（38）: route命令">每天一个linux命令（38）: route命令</span>
+        <span class="post-date" title="2017-01-07 10:16:34">2017/01/07</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/06/linux/每天一个linux命令（37）-ifconfig命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（37）: ifconfig命令">每天一个linux命令（37）: ifconfig命令</span>
+        <span class="post-date" title="2017-01-06 09:57:01">2017/01/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/05/linux/每天一个linux命令（36）-lsof命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（36）: lsof命令">每天一个linux命令（36）: lsof命令</span>
+        <span class="post-date" title="2017-01-05 10:28:13">2017/01/05</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/04/linux/每天一个linux命令（35）-iostat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（35）: iostat命令">每天一个linux命令（35）: iostat命令</span>
+        <span class="post-date" title="2017-01-04 10:10:02">2017/01/04</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/03/linux/每天一个linux命令（34）-vmstat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（34）: vmstat命令">每天一个linux命令（34）: vmstat命令</span>
+        <span class="post-date" title="2017-01-03 09:46:57">2017/01/03</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/02/linux/每天一个linux命令（33）-free命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（33）: free命令">每天一个linux命令（33）: free命令</span>
+        <span class="post-date" title="2017-01-02 21:43:26">2017/01/02</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/01/linux/每天一个linux命令（32）-top命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（32）: top命令">每天一个linux命令（32）: top命令</span>
+        <span class="post-date" title="2017-01-01 19:31:28">2017/01/01</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/31/linux/每天一个linux命令（31）-du命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（31）: du命令">每天一个linux命令（31）: du命令</span>
+        <span class="post-date" title="2016-12-31 14:36:01">2016/12/31</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/30/linux/每天一个linux命令（30）-df命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（30）: df命令">每天一个linux命令（30）: df命令</span>
+        <span class="post-date" title="2016-12-30 14:23:31">2016/12/30</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/29/linux/每天一个linux命令（29）-etc-group文件详解/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（29）: /etc/group文件详解">每天一个linux命令（29）: /etc/group文件详解</span>
+        <span class="post-date" title="2016-12-29 14:13:05">2016/12/29</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/28/linux/每天一个linux命令（28）-chown命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（28）: chown命令">每天一个linux命令（28）: chown命令</span>
+        <span class="post-date" title="2016-12-28 09:51:30">2016/12/28</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/27/linux/每天一个linux命令（27）-chgrp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（27）: chgrp命令">每天一个linux命令（27）: chgrp命令</span>
+        <span class="post-date" title="2016-12-27 09:40:06">2016/12/27</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/26/linux/每天一个linux命令（26）-chmod命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（26）: chmod命令">每天一个linux命令（26）: chmod命令</span>
+        <span class="post-date" title="2016-12-26 20:22:43">2016/12/26</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/25/linux/每天一个linux命令（25）-gzip命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（25）: gzip命令">每天一个linux命令（25）: gzip命令</span>
+        <span class="post-date" title="2016-12-25 16:55:15">2016/12/25</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/24/linux/每天一个linux命令（24）-tar命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（24）: tar命令">每天一个linux命令（24）: tar命令</span>
+        <span class="post-date" title="2016-12-24 10:24:17">2016/12/24</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/23/linux/每天一个linux命令（23）-用SecureCRT来上传和下载文件/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（23）: 用SecureCRT来上传和下载文件">每天一个linux命令（23）: 用SecureCRT来上传和下载文件</span>
+        <span class="post-date" title="2016-12-23 09:48:15">2016/12/23</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/22/linux/每天一个linux命令（22）-find命令的参数详解/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（22）: find命令的参数详解">每天一个linux命令（22）: find命令的参数详解</span>
+        <span class="post-date" title="2016-12-22 11:44:14">2016/12/22</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/21/linux/每天一个linux命令（21）-find命令之xargs/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（21）: find命令之xargs">每天一个linux命令（21）: find命令之xargs</span>
+        <span class="post-date" title="2016-12-21 11:08:01">2016/12/21</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/20/linux/每天一个linux命令（20）-find命令之exec/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（20）: find命令之exec">每天一个linux命令（20）: find命令之exec</span>
+        <span class="post-date" title="2016-12-20 10:47:32">2016/12/20</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/19/linux/每天一个linux命令（19）-find命令概览/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（19）: find命令概览">每天一个linux命令（19）: find命令概览</span>
+        <span class="post-date" title="2016-12-19 15:19:10">2016/12/19</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/18/linux/每天一个linux命令（18）-locate命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（18）: locate命令">每天一个linux命令（18）: locate命令</span>
+        <span class="post-date" title="2016-12-18 15:09:28">2016/12/18</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/17/linux/每天一个linux命令（17）-whereis命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（17）: whereis命令">每天一个linux命令（17）: whereis命令</span>
+        <span class="post-date" title="2016-12-17 10:42:58">2016/12/17</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/16/linux/每天一个linux命令（16）-which命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（16）: which命令">每天一个linux命令（16）: which命令</span>
+        <span class="post-date" title="2016-12-16 11:25:49">2016/12/16</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/15/linux/每天一个linux命令（15）-tail命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（15）: tail命令">每天一个linux命令（15）: tail命令</span>
+        <span class="post-date" title="2016-12-15 15:00:26">2016/12/15</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/14/linux/每天一个linux命令（14）-head命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（14）: head命令">每天一个linux命令（14）: head命令</span>
+        <span class="post-date" title="2016-12-14 14:35:49">2016/12/14</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/13/linux/每天一个linux命令（13）-less命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（13）: less命令">每天一个linux命令（13）: less命令</span>
+        <span class="post-date" title="2016-12-13 21:46:14">2016/12/13</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/12/linux/每天一个linux命令（12）-more命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（12）: more命令">每天一个linux命令（12）: more命令</span>
+        <span class="post-date" title="2016-12-12 21:29:39">2016/12/12</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/11/linux/每天一个linux命令（11）-nl命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（11）: nl命令">每天一个linux命令（11）: nl命令</span>
+        <span class="post-date" title="2016-12-11 21:11:48">2016/12/11</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/10/linux/每天一个linux命令（10）-cat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（10）: cat命令">每天一个linux命令（10）: cat命令</span>
+        <span class="post-date" title="2016-12-10 10:52:50">2016/12/10</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/09/linux/每天一个linux命令（9）-touch命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（9）: touch命令">每天一个linux命令（9）: touch命令</span>
+        <span class="post-date" title="2016-12-09 07:15:12">2016/12/09</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/08/linux/每天一个linux命令（8）-cp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（8）: cp命令">每天一个linux命令（8）: cp命令</span>
+        <span class="post-date" title="2016-12-08 16:31:43">2016/12/08</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/07/linux/每天一个linux命令（7）-mv命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（7）: mv命令">每天一个linux命令（7）: mv命令</span>
+        <span class="post-date" title="2016-12-07 15:55:20">2016/12/07</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/06/linux/每天一个linux命令（6）-rmdir命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（6）: rmdir命令">每天一个linux命令（6）: rmdir命令</span>
+        <span class="post-date" title="2016-12-06 15:24:32">2016/12/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/05/linux/每天一个linux命令（5）-rm命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（5）: rm命令">每天一个linux命令（5）: rm命令</span>
+        <span class="post-date" title="2016-12-05 13:40:38">2016/12/05</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/04/linux/每天一个linux命令（4）-mkdir命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（4）: mkdir命令">每天一个linux命令（4）: mkdir命令</span>
+        <span class="post-date" title="2016-12-04 09:27:32">2016/12/04</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/03/linux/每天一个linux命令（3）-pwd命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（3）: pwd命令">每天一个linux命令（3）: pwd命令</span>
+        <span class="post-date" title="2016-12-03 09:15:52">2016/12/03</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/02/linux/每天一个linux命令（2）-cd命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（2）: cd命令">每天一个linux命令（2）: cd命令</span>
+        <span class="post-date" title="2016-12-02 11:04:55">2016/12/02</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/01/linux/每天一个linux命令（1）-ls命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（1）: ls命令">每天一个linux命令（1）: ls命令</span>
+        <span class="post-date" title="2016-12-01 09:38:59">2016/12/01</span>
+    </a>
+    
+    <a  class="数据库 "
+       href="/2016/10/12/database/PostgreSQL常用操作/"
+       data-tag="PostgreSQL"
+       data-author="" >
+        <span class="post-title" title="PostgreSQL常用操作">PostgreSQL常用操作</span>
+        <span class="post-date" title="2016-10-12 20:27:07">2016/10/12</span>
+    </a>
+    
+    <a  class="数据库 "
+       href="/2016/10/12/database/PostgreSQL初体验/"
+       data-tag="PostgreSQL"
+       data-author="" >
+        <span class="post-title" title="PostgreSQL初体验">PostgreSQL初体验</span>
+        <span class="post-date" title="2016-10-12 19:49:40">2016/10/12</span>
+    </a>
+    
+    <a  class="数据库 "
+       href="/2016/10/12/database/PostgreSQL的安装/"
+       data-tag="PostgreSQL"
+       data-author="" >
+        <span class="post-title" title="PostgreSQL的介绍与安装">PostgreSQL的介绍与安装</span>
+        <span class="post-date" title="2016-10-12 15:44:16">2016/10/12</span>
+    </a>
+    
+</nav>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-linux/Vim命令速查表" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+      
+      <time class="date" title="2017-03-06 11:23:36">2017-Mar-06</time>
+      
+      
+      <span>字数:1,781</span>
+      
+      
+        <span id="busuanzi_container_page_pv">
+            阅读量:<span id="busuanzi_value_page_pv"></span>
+        </span>
+      
+      
+      <span class="tag">
+        
+      <a href="javascript:" class="color4">vim</a>
+        
+      </span>
+      
+      
+      
+  </div>
+    
+        <h1 class="article-title">Vim命令速查表</h1>
+    
+    <div class="toc-ref">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#进入vim"><span class="toc-text">进入vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vim配置"><span class="toc-text">vim配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移动光标"><span class="toc-text">移动光标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#屏幕滚动"><span class="toc-text">屏幕滚动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入文本类"><span class="toc-text">插入文本类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除命令"><span class="toc-text">删除命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复制粘贴"><span class="toc-text">复制粘贴</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#撤销"><span class="toc-text">撤销</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索及替换"><span class="toc-text">搜索及替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#书签"><span class="toc-text">书签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#visual模式"><span class="toc-text">visual模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#行方式命令"><span class="toc-text">行方式命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#宏"><span class="toc-text">宏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#窗口操作"><span class="toc-text">窗口操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件及其他"><span class="toc-text">文件及其他</span></a></li></ol>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>去年上半年开始全面使用linux进行开发和娱乐了，现在已经回不去windows了。</p>
+<p>话归正传，在linux上一直使用vim，慢慢熟悉了它的命令，才终于领悟了什么是编辑器之神。</p>
+<p>最近抽空整理了这份速查表，收获颇丰，并分享给大家。</p>
+<h2 id="进入vim"><a href="#进入vim" class="headerlink" title="进入vim"></a>进入vim</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">vim filename</td>
+<td style="text-align:left">打开或新建文件,并将光标置于第一行首</td>
+</tr>
+<tr>
+<td style="text-align:left">vim +n filename</td>
+<td style="text-align:left">打开文件，并将光标置于第n行首</td>
+</tr>
+<tr>
+<td style="text-align:left">vim + filename</td>
+<td style="text-align:left">打开文件，并将光标置于最后一行首</td>
+</tr>
+<tr>
+<td style="text-align:left">vim +/pattern filename</td>
+<td style="text-align:left">打开文件，并将光标置于第一个与pattern匹配的串处</td>
+</tr>
+<tr>
+<td style="text-align:left">vim -r filename</td>
+<td style="text-align:left">在上次正用vim编辑时发生系统崩溃，恢复filename</td>
+</tr>
+<tr>
+<td style="text-align:left">vim filename….filename</td>
+<td style="text-align:left">打开多个文件，依次编辑</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vim配置"><a href="#vim配置" class="headerlink" title="vim配置"></a>vim配置</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">all</td>
+<td style="text-align:left">列出所有选项设置情况</td>
+</tr>
+<tr>
+<td style="text-align:left">term</td>
+<td style="text-align:left">设置终端类型</td>
+</tr>
+<tr>
+<td style="text-align:left">ignorance</td>
+<td style="text-align:left">在搜索中忽略大小写</td>
+</tr>
+<tr>
+<td style="text-align:left">list</td>
+<td style="text-align:left">显示制表位(Ctrl+I)和行尾标志（$)</td>
+</tr>
+<tr>
+<td style="text-align:left">number</td>
+<td style="text-align:left">显示行号</td>
+</tr>
+<tr>
+<td style="text-align:left">report</td>
+<td style="text-align:left">显示由面向行的命令修改过的数目</td>
+</tr>
+<tr>
+<td style="text-align:left">terse</td>
+<td style="text-align:left">显示简短的警告信息</td>
+</tr>
+<tr>
+<td style="text-align:left">warn</td>
+<td style="text-align:left">在转到别的文件时若没保存当前文件则显示NO write信息</td>
+</tr>
+<tr>
+<td style="text-align:left">nomagic</td>
+<td style="text-align:left">允许在搜索模式中，使用前面不带“\”的特殊字符</td>
+</tr>
+<tr>
+<td style="text-align:left">nowrapscan</td>
+<td style="text-align:left">禁止vi在搜索到达文件两端时，又从另一端开始</td>
+</tr>
+<tr>
+<td style="text-align:left">mesg</td>
+<td style="text-align:left">允许vi显示其他用户用write写到自己终端上的信息</td>
+</tr>
+<tr>
+<td style="text-align:left">:set number / set nonumber</td>
+<td style="text-align:left">显示/不显示行号</td>
+</tr>
+<tr>
+<td style="text-align:left">:set ruler /set noruler</td>
+<td style="text-align:left">显示/不显示标尺</td>
+</tr>
+<tr>
+<td style="text-align:left">:set hlsearch</td>
+<td style="text-align:left">高亮显示查找到的单词</td>
+</tr>
+<tr>
+<td style="text-align:left">:set nohlsearch</td>
+<td style="text-align:left">关闭高亮显示</td>
+</tr>
+<tr>
+<td style="text-align:left">:syntax on</td>
+<td style="text-align:left">语法高亮</td>
+</tr>
+<tr>
+<td style="text-align:left">:set nu</td>
+<td style="text-align:left">显示行号</td>
+</tr>
+<tr>
+<td style="text-align:left">:set tabstop=8</td>
+<td style="text-align:left">设置tab大小,8为最常用最普遍的设置</td>
+</tr>
+<tr>
+<td style="text-align:left">:set softtabstop=8</td>
+<td style="text-align:left">4:4个空格,8:正常的制表符,12:一个制表符4个空格,16:两个制表符</td>
+</tr>
+<tr>
+<td style="text-align:left">:set autoindent</td>
+<td style="text-align:left">自动缩进</td>
+</tr>
+<tr>
+<td style="text-align:left">:set cindent</td>
+<td style="text-align:left">C语言格式里面的自动缩进</td>
+</tr>
+</tbody>
+</table>
+<h2 id="移动光标"><a href="#移动光标" class="headerlink" title="移动光标"></a>移动光标</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">k nk</td>
+<td style="text-align:left">上 向上移动n行</td>
+</tr>
+<tr>
+<td style="text-align:left">j nj</td>
+<td style="text-align:left">下 向下移动n行</td>
+</tr>
+<tr>
+<td style="text-align:left">h nh</td>
+<td style="text-align:left">左 向左移动n行</td>
+</tr>
+<tr>
+<td style="text-align:left">l nl</td>
+<td style="text-align:left">右 向右移动n行</td>
+</tr>
+<tr>
+<td style="text-align:left">Space</td>
+<td style="text-align:left">光标右移一个字符</td>
+</tr>
+<tr>
+<td style="text-align:left">Backspace</td>
+<td style="text-align:left">光标左移一个字符</td>
+</tr>
+<tr>
+<td style="text-align:left">Enter</td>
+<td style="text-align:left">光标下移一行</td>
+</tr>
+<tr>
+<td style="text-align:left">w/W</td>
+<td style="text-align:left">光标右移一个字至字首</td>
+</tr>
+<tr>
+<td style="text-align:left">b/B</td>
+<td style="text-align:left">光标左移一个字至字首</td>
+</tr>
+<tr>
+<td style="text-align:left">e或E</td>
+<td style="text-align:left">光标右移一个字至字尾</td>
+</tr>
+<tr>
+<td style="text-align:left">)</td>
+<td style="text-align:left">光标移至句尾</td>
+</tr>
+<tr>
+<td style="text-align:left">(</td>
+<td style="text-align:left">光标移至句首</td>
+</tr>
+<tr>
+<td style="text-align:left">}</td>
+<td style="text-align:left">光标移至段落开头</td>
+</tr>
+<tr>
+<td style="text-align:left">{</td>
+<td style="text-align:left">光标移至段落结尾</td>
+</tr>
+<tr>
+<td style="text-align:left">n$</td>
+<td style="text-align:left">光标移至第n行尾</td>
+</tr>
+<tr>
+<td style="text-align:left">H</td>
+<td style="text-align:left">光标移至屏幕顶行</td>
+</tr>
+<tr>
+<td style="text-align:left">M</td>
+<td style="text-align:left">光标移至屏幕中间行</td>
+</tr>
+<tr>
+<td style="text-align:left">L</td>
+<td style="text-align:left">光标移至屏幕最后行</td>
+</tr>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">（注意是数字零）光标移至当前行首</td>
+</tr>
+<tr>
+<td style="text-align:left">^</td>
+<td style="text-align:left">移动光标到行首第一个非空字符上去</td>
+</tr>
+<tr>
+<td style="text-align:left">$</td>
+<td style="text-align:left">光标移至当前行尾</td>
+</tr>
+<tr>
+<td style="text-align:left">gg</td>
+<td style="text-align:left">移到第一行</td>
+</tr>
+<tr>
+<td style="text-align:left">G</td>
+<td style="text-align:left">移到最后一行</td>
+</tr>
+<tr>
+<td style="text-align:left">f<a></a></td>
+<td style="text-align:left">移动光标到当前行的字符a上</td>
+</tr>
+<tr>
+<td style="text-align:left">F</td>
+<td style="text-align:left">相反</td>
+</tr>
+<tr>
+<td style="text-align:left">%</td>
+<td style="text-align:left">移动到与制匹配的括号上去（），{}，[]，&lt;&gt;等</td>
+</tr>
+<tr>
+<td style="text-align:left">nG</td>
+<td style="text-align:left">移动到第n行上</td>
+</tr>
+<tr>
+<td style="text-align:left">G</td>
+<td style="text-align:left">到最后一行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="屏幕滚动"><a href="#屏幕滚动" class="headerlink" title="屏幕滚动"></a>屏幕滚动</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Ctrl+u</td>
+<td style="text-align:left">向文件首翻半屏</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+d</td>
+<td style="text-align:left">向文件尾翻半屏</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+f</td>
+<td style="text-align:left">向文件尾翻一屏</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl＋b</td>
+<td style="text-align:left">向文件首翻一屏</td>
+</tr>
+<tr>
+<td style="text-align:left">nz</td>
+<td style="text-align:left">将第n行滚至屏幕顶部，不指定n时将当前行滚至屏幕顶部</td>
+</tr>
+</tbody>
+</table>
+<h2 id="插入文本类"><a href="#插入文本类" class="headerlink" title="插入文本类"></a>插入文本类</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">i</td>
+<td style="text-align:left">在光标前</td>
+</tr>
+<tr>
+<td style="text-align:left">I</td>
+<td style="text-align:left">在当前行首</td>
+</tr>
+<tr>
+<td style="text-align:left">a</td>
+<td style="text-align:left">光标后</td>
+</tr>
+<tr>
+<td style="text-align:left">A</td>
+<td style="text-align:left">在当前行尾</td>
+</tr>
+<tr>
+<td style="text-align:left">o</td>
+<td style="text-align:left">在当前行之下新开一行</td>
+</tr>
+<tr>
+<td style="text-align:left">O</td>
+<td style="text-align:left">在当前行之上新开一行</td>
+</tr>
+<tr>
+<td style="text-align:left">r</td>
+<td style="text-align:left">替换当前字符</td>
+</tr>
+<tr>
+<td style="text-align:left">R</td>
+<td style="text-align:left">替换当前字符及其后的字符，直至按ESC键</td>
+</tr>
+<tr>
+<td style="text-align:left">s</td>
+<td style="text-align:left">从当前光标位置处开始，以输入的文本替代指定数目的字符</td>
+</tr>
+<tr>
+<td style="text-align:left">S</td>
+<td style="text-align:left">删除指定数目的行，并以所输入文本代替之</td>
+</tr>
+<tr>
+<td style="text-align:left">ncw/nCW</td>
+<td style="text-align:left">修改指定数目的字</td>
+</tr>
+<tr>
+<td style="text-align:left">nCC</td>
+<td style="text-align:left">修改指定数目的行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="删除命令"><a href="#删除命令" class="headerlink" title="删除命令"></a>删除命令</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">x/X</td>
+<td style="text-align:left">删除一个字符，x删除光标后的，而X删除光标前的</td>
+</tr>
+<tr>
+<td style="text-align:left">dw</td>
+<td style="text-align:left">删除一个单词(删除光标位置到下一个单词开始的位置)</td>
+</tr>
+<tr>
+<td style="text-align:left">dnw</td>
+<td style="text-align:left">删除n个单词</td>
+</tr>
+<tr>
+<td style="text-align:left">dne</td>
+<td style="text-align:left">也可，只是删除到单词尾</td>
+</tr>
+<tr>
+<td style="text-align:left">do</td>
+<td style="text-align:left">删至行首</td>
+</tr>
+<tr>
+<td style="text-align:left">d$</td>
+<td style="text-align:left">删至行尾</td>
+</tr>
+<tr>
+<td style="text-align:left">dd</td>
+<td style="text-align:left">删除一行</td>
+</tr>
+<tr>
+<td style="text-align:left">ndd</td>
+<td style="text-align:left">删除当前行及其后n-1行</td>
+</tr>
+<tr>
+<td style="text-align:left">dnl</td>
+<td style="text-align:left">向右删除n个字母</td>
+</tr>
+<tr>
+<td style="text-align:left">dnh</td>
+<td style="text-align:left">向左删除n个字母</td>
+</tr>
+<tr>
+<td style="text-align:left">dnj</td>
+<td style="text-align:left">向下删除n行,当前行+其上n行</td>
+</tr>
+<tr>
+<td style="text-align:left">dnk</td>
+<td style="text-align:left">向上删除n行,当期行+其下n行</td>
+</tr>
+<tr>
+<td style="text-align:left">cnw[word]</td>
+<td style="text-align:left">将n个word改变为word</td>
+</tr>
+<tr>
+<td style="text-align:left">C$</td>
+<td style="text-align:left">改变到行尾</td>
+</tr>
+<tr>
+<td style="text-align:left">cc</td>
+<td style="text-align:left">改变整行</td>
+</tr>
+<tr>
+<td style="text-align:left">shift+j</td>
+<td style="text-align:left">删除行尾的换行符，下一行接上来了</td>
+</tr>
+</tbody>
+</table>
+<h2 id="复制粘贴"><a href="#复制粘贴" class="headerlink" title="复制粘贴"></a>复制粘贴</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">p</td>
+<td style="text-align:left">粘贴用x或d删除的文本</td>
+</tr>
+<tr>
+<td style="text-align:left">ynw</td>
+<td style="text-align:left">复制n个单词</td>
+</tr>
+<tr>
+<td style="text-align:left">yy</td>
+<td style="text-align:left">复制一行</td>
+</tr>
+<tr>
+<td style="text-align:left">ynl</td>
+<td style="text-align:left">复制n个字符</td>
+</tr>
+<tr>
+<td style="text-align:left">y$</td>
+<td style="text-align:left">复制当前光标至行尾处</td>
+</tr>
+<tr>
+<td style="text-align:left">nyy</td>
+<td style="text-align:left">拷贝n行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">u</td>
+<td style="text-align:left">撤销前一次的操作</td>
+</tr>
+<tr>
+<td style="text-align:left">shif+u(U)</td>
+<td style="text-align:left">撤销对该行的所有操作</td>
+</tr>
+</tbody>
+</table>
+<h2 id="搜索及替换"><a href="#搜索及替换" class="headerlink" title="搜索及替换"></a>搜索及替换</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">/pattern</td>
+<td style="text-align:left">从光标开始处向文件尾搜索pattern</td>
+</tr>
+<tr>
+<td style="text-align:left">?pattern</td>
+<td style="text-align:left">从光标开始处向文件首搜索pattern</td>
+</tr>
+<tr>
+<td style="text-align:left">n</td>
+<td style="text-align:left">在同一方向重复上一次搜索命令</td>
+</tr>
+<tr>
+<td style="text-align:left">N</td>
+<td style="text-align:left">在反方向上重复上一次搜索命令</td>
+</tr>
+<tr>
+<td style="text-align:left">cw newword</td>
+<td style="text-align:left">替换为newword</td>
+</tr>
+<tr>
+<td style="text-align:left">n</td>
+<td style="text-align:left">继续查找</td>
+</tr>
+<tr>
+<td style="text-align:left">.</td>
+<td style="text-align:left">执行替换</td>
+</tr>
+<tr>
+<td style="text-align:left">:s/p1/p2/g</td>
+<td style="text-align:left">将当前行中所有p1均用p2替代,g表示执行 用c表示需要确认</td>
+</tr>
+<tr>
+<td style="text-align:left">:n1,n2 s/p1/p2/g</td>
+<td style="text-align:left">将第n1至n2行中所有p1均用p2替代</td>
+</tr>
+<tr>
+<td style="text-align:left">:g/p1/s//p2/g</td>
+<td style="text-align:left">将文件中所有p1均用p2替换</td>
+</tr>
+<tr>
+<td style="text-align:left">:1,$ s/string1/string2/g</td>
+<td style="text-align:left">在全文中将string1替换为string2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="书签"><a href="#书签" class="headerlink" title="书签"></a>书签</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">m[a-z]</td>
+<td style="text-align:left">在文中做标记，标记号可为a-z的26个字母</td>
+</tr>
+<tr>
+<td style="text-align:left">`a</td>
+<td style="text-align:left">移动到标记a处</td>
+</tr>
+</tbody>
+</table>
+<h2 id="visual模式"><a href="#visual模式" class="headerlink" title="visual模式"></a>visual模式</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">v</td>
+<td style="text-align:left">进入visual 模式</td>
+</tr>
+<tr>
+<td style="text-align:left">V</td>
+<td style="text-align:left">进入行的visual 模式</td>
+</tr>
+<tr>
+<td style="text-align:left">ctrl+v</td>
+<td style="text-align:left">进如块操作模式用o和O改变选择的边的大小</td>
+</tr>
+<tr>
+<td style="text-align:left">在所有行插入相同的内容如include&lt;</td>
+<td style="text-align:left">将光标移到开始插入的位置，按CTRL+V进入VISUAL模式，选择好模块后按I（shift+i)，后插入要插入的文本，按[ESC]完成</td>
+</tr>
+</tbody>
+</table>
+<h2 id="行方式命令"><a href="#行方式命令" class="headerlink" title="行方式命令"></a>行方式命令</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">:n1,n2 co n3</td>
+<td style="text-align:left">将n1行到n2行之间的内容拷贝到第n3行下</td>
+</tr>
+<tr>
+<td style="text-align:left">:n1,n2 m n3</td>
+<td style="text-align:left">将n1行到n2行之间的内容移至到第n3行下</td>
+</tr>
+<tr>
+<td style="text-align:left">:n1,n2 d</td>
+<td style="text-align:left">将n1行到n2行之间的内容删除</td>
+</tr>
+<tr>
+<td style="text-align:left">:n1,n2 w!command</td>
+<td style="text-align:left">将文件中n1行至n2行的内容作为command的输入并执行之<br>若不指定n1，n2，则表示将整个文件内容作为command的输入</td>
+</tr>
+</tbody>
+</table>
+<h2 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">q[a-z]</td>
+<td style="text-align:left">开始记录但前开始的操作为宏，名称可为【a-z】，然后用q终止录制宏</td>
+</tr>
+<tr>
+<td style="text-align:left">reg</td>
+<td style="text-align:left">显示当前定义的所有的宏，用@[a-z]来在当前光标处执行宏[a-z]</td>
+</tr>
+</tbody>
+</table>
+<h2 id="窗口操作"><a href="#窗口操作" class="headerlink" title="窗口操作"></a>窗口操作</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">:split</td>
+<td style="text-align:left">分割一个窗口</td>
+</tr>
+<tr>
+<td style="text-align:left">:split file.c</td>
+<td style="text-align:left">为另一个文件file.c分隔窗口</td>
+</tr>
+<tr>
+<td style="text-align:left">:nsplit file.c</td>
+<td style="text-align:left">为另一个文件file.c分隔窗口，并指定其行数</td>
+</tr>
+<tr>
+<td style="text-align:left">ctrl＋w</td>
+<td style="text-align:left">在窗口中切换</td>
+</tr>
+<tr>
+<td style="text-align:left">:close</td>
+<td style="text-align:left">关闭当前窗口</td>
+</tr>
+</tbody>
+</table>
+<h2 id="文件及其他"><a href="#文件及其他" class="headerlink" title="文件及其他"></a>文件及其他</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">:q</td>
+<td style="text-align:left">退出vi</td>
+</tr>
+<tr>
+<td style="text-align:left">:q!</td>
+<td style="text-align:left">不保存文件并退出vi</td>
+</tr>
+<tr>
+<td style="text-align:left">:e filename</td>
+<td style="text-align:left">打开文件filename进行编辑</td>
+</tr>
+<tr>
+<td style="text-align:left">:e!</td>
+<td style="text-align:left">放弃修改文件内容，重新载入该文件编辑</td>
+</tr>
+<tr>
+<td style="text-align:left">:w</td>
+<td style="text-align:left">保存当前文件</td>
+</tr>
+<tr>
+<td style="text-align:left">:wq</td>
+<td style="text-align:left">存盘退出</td>
+</tr>
+<tr>
+<td style="text-align:left">:ZZ</td>
+<td style="text-align:left">保存当前文档并退出VIM</td>
+</tr>
+<tr>
+<td style="text-align:left">:!command</td>
+<td style="text-align:left">执行shell命令command</td>
+</tr>
+<tr>
+<td style="text-align:left">:r!command</td>
+<td style="text-align:left">将命令command的输出结果放到当前行</td>
+</tr>
+<tr>
+<td style="text-align:left">:n1,n2 write temp.c</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">:read file.c</td>
+<td style="text-align:left">将文件file.c的内容插入到当前光标所在的下面</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+</article>
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span>文章标题:</span>Vim命令速查表</p>
+    <p><span>文章字数:</span><span class="post-count">1,781</span></p>
+    <p><span>本文作者:</span><a href="javascript:void(0)" title="牵猪的仓鼠">牵猪的仓鼠</a></p>
+    <p><span>发布时间:</span>2017-03-06, 11:23:36</p>
+    <p><span>最后更新:</span>2017-03-13, 12:11:01</p>
+    <span>原始链接:</span><a class="post-url" href="/2017/03/06/linux/Vim命令速查表/" title="Vim命令速查表">http://s.amlove.cn/2017/03/06/linux/Vim命令速查表/</a>
+    <p>
+        <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+    
+        <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/03/06/linux/Vim命令速查表/" data-title="Vim命令速查表" data-url="http://s.amlove.cn/2017/03/06/linux/Vim命令速查表/"></div>
+    <script>
+        var duoshuoQuery;
+        function loadComment() {
+            duoshuoQuery = {short_name: $(".theme_duoshuo_domain").val()};
+            var d = document, s = d.createElement('script');
+            s.src = 'https://static.duoshuo.com/embed.js?t='+new Date().getTime();
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2017-2027 s.amlove.cn</p>
+
+    </div>
+</div>
+<div class="full-toc">
+    <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+</div>
+<div class="acParent"></div>
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <img src="/img/alipay.jpg" title="扫码支持">
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+</body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
+<script src="/js/script.js"></script>
+<script>
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['@牵猪的仓鼠','#Hexo','#入门','#PostgreSQL','#vim','#ftp','#linux命令',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        
+            $(".post .pjax table").addClass("green_title");
+        
+        
+        $("input[name=pay]").on("click", function () {
+            $(".shang_payimg img").attr("src","/img/"+$("input[name=pay]:checked").val()+".jpg");
+        })
+        
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1;
+            var $numbering = $('<ul/>').addClass('pre-numbering').attr("unselectable","on");
+            $(this).addClass('has-numbering')
+                    .parent()
+                    .append($numbering);
+            for(i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+        
+        $.getScript("//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+    }
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+</script>
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 3px;
+        border: 1px solid #C3CCD0;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        padding-left: 40px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 9px 2px 12px 5px;
+        text-align: right;
+        color: #AAA;
+    }
+</style>
+
+</html>

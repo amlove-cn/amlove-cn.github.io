@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>每天一个linux命令（40）: traceroute命令 | 老鼠洞</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="通过traceroute我们可以知道信息从你的计算机到互联网另一端的主机是走的什么路径。当然每次数据包由某一同样的出发点（source）到达某一同样的目的地(destination)走的路径可能会不一样，但基本上来说大部分时候所走的路由是相同的。linux系统中，我们称之为traceroute,在MS Windows中为tracert。 traceroute通过发送小的数据包到目的设备直到其返">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每天一个linux命令（40）: traceroute命令">
+<meta property="og:url" content="http://s.amlove.cn/2017/01/09/linux/每天一个linux命令（40）-traceroute命令/index.html">
+<meta property="og:site_name" content="老鼠洞">
+<meta property="og:description" content="通过traceroute我们可以知道信息从你的计算机到互联网另一端的主机是走的什么路径。当然每次数据包由某一同样的出发点（source）到达某一同样的目的地(destination)走的路径可能会不一样，但基本上来说大部分时候所走的路由是相同的。linux系统中，我们称之为traceroute,在MS Windows中为tracert。 traceroute通过发送小的数据包到目的设备直到其返">
+<meta property="og:updated_time" content="2017-03-13T04:11:01.642Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每天一个linux命令（40）: traceroute命令">
+<meta name="twitter:description" content="通过traceroute我们可以知道信息从你的计算机到互联网另一端的主机是走的什么路径。当然每次数据包由某一同样的出发点（source）到达某一同样的目的地(destination)走的路径可能会不一样，但基本上来说大部分时候所走的路由是相同的。linux系统中，我们称之为traceroute,在MS Windows中为tracert。 traceroute通过发送小的数据包到目的设备直到其返">
+  
+  
+    <link rel="icon" href="/img/avatar.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link rel="stylesheet" href="/css/hl_theme/sublime.css">
+  
+  <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="/js/jquery.autocomplete.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+    <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_duoshuo_on" value="true">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_duoshuo_domain" value="amlove">
+</div>
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar" style="background-image:url(/img/avatar.jpg)"></a>
+<div class="author">
+    <span>牵猪的仓鼠</span>
+</div>
+<div class="icon">
+    
+    <a class="rss" title="rss" href="/atom.xml" target="_blank"></a>
+    
+    
+    <a class="github" title="github" href="https://github.com/amlove2" target="_blank"></a>
+    
+    
+    
+    
+    
+    
+    
+    <a class="weibo" title="weibo" href="http://weibo.com/vb2005xu" target="_blank"></a>
+    
+    
+    <a class="email" title="email" href="mailto:vb2005xu@sina.com"></a>
+    
+</div>
+<ul>
+    <li class="all active">全部文章</li>
+    
+    <li data-rel="Hexo教程"> Hexo教程 </li>
+    
+    <li data-rel="数据库"> 数据库 </li>
+    
+    <li data-rel="linux"> linux </li>
+    
+</ul>
+    </div>
+    <div class="nav-right">
+        <form onkeydown="if(event.keyCode==13){return false;}">
+    <input class="search" type="text" placeholder="Search..." autocomplete="off">
+    <i class="cross"></i>
+    <span>
+        <label for="tagswitch">Tags:</label>
+        <input id="tagswitch" type="checkbox">
+    </span>
+</form>
+<ul class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">入门</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">PostgreSQL</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">vim</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">ftp</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">linux命令</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</ul>
+
+<nav>
+    
+    <a id="top" class="Hexo教程 "
+       href="/2017/03/12/hello-world/"
+       data-tag="Hexo,入门"
+       data-author="" >
+        <span class="post-title" title="Hello World">Hello World</span>
+        <span class="post-date" title="2017-03-12 19:45:02">2017/03/12</span>
+    </a>
+    
+    <a id="top" class="Hexo教程 "
+       href="/2017/03/12/Hexo-新手记/"
+       data-tag="Hexo,入门"
+       data-author="" >
+        <span class="post-title" title="Hexo 新手记">Hexo 新手记</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a id="top" class="linux "
+       href="/2017/01/23/linux/每天一个linux命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令">每天一个linux命令</span>
+        <span class="post-date" title="2017-01-23 11:41:48">2017/01/23</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/03/06/linux/Vim命令速查表/"
+       data-tag="vim"
+       data-author="" >
+        <span class="post-title" title="Vim命令速查表">Vim命令速查表</span>
+        <span class="post-date" title="2017-03-06 11:23:36">2017/03/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/03/06/linux/如何在linux中搭建ftp服务/"
+       data-tag="ftp"
+       data-author="" >
+        <span class="post-title" title="如何在linux中搭建ftp服务">如何在linux中搭建ftp服务</span>
+        <span class="post-date" title="2017-03-06 08:47:48">2017/03/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/03/05/linux/每天一个linux命令（57）-sftp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（57）: sftp命令">每天一个linux命令（57）: sftp命令</span>
+        <span class="post-date" title="2017-03-05 16:29:38">2017/03/05</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/02/20/linux/每天一个linux命令（56）-tailf命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（56）: tailf命令">每天一个linux命令（56）: tailf命令</span>
+        <span class="post-date" title="2017-02-20 15:11:06">2017/02/20</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/23/linux/每天一个linux命令（55）-crontab命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（55）: crontab命令">每天一个linux命令（55）: crontab命令</span>
+        <span class="post-date" title="2017-01-23 10:44:50">2017/01/23</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/22/linux/每天一个linux命令（54）-at命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（54）: at命令">每天一个linux命令（54）: at命令</span>
+        <span class="post-date" title="2017-01-22 10:23:44">2017/01/22</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/21/linux/每天一个linux命令（53）-watch命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（53）: watch命令">每天一个linux命令（53）: watch命令</span>
+        <span class="post-date" title="2017-01-21 10:12:30">2017/01/21</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/20/linux/每天一个linux命令（52）-ps命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（52）: ps命令">每天一个linux命令（52）: ps命令</span>
+        <span class="post-date" title="2017-01-20 09:46:16">2017/01/20</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/19/linux/每天一个linux命令（51）-wc命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（51）: wc命令">每天一个linux命令（51）: wc命令</span>
+        <span class="post-date" title="2017-01-19 09:33:59">2017/01/19</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/18/linux/每天一个linux命令（50）-grep命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（50）: grep命令">每天一个linux命令（50）: grep命令</span>
+        <span class="post-date" title="2017-01-18 10:12:46">2017/01/18</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/17/linux/每天一个linux命令（49）-cal命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（49）: cal命令">每天一个linux命令（49）: cal命令</span>
+        <span class="post-date" title="2017-01-17 09:38:32">2017/01/17</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/16/linux/每天一个linux命令（48）-date命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（48）: date命令">每天一个linux命令（48）: date命令</span>
+        <span class="post-date" title="2017-01-16 14:39:27">2017/01/16</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/15/linux/每天一个linux命令（47）-diff命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（47）: diff命令">每天一个linux命令（47）: diff命令</span>
+        <span class="post-date" title="2017-01-15 14:08:08">2017/01/15</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/14/linux/每天一个linux命令（46）-ln命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（46）: ln命令">每天一个linux命令（46）: ln命令</span>
+        <span class="post-date" title="2017-01-14 11:00:33">2017/01/14</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/13/linux/每天一个linux命令（45）-scp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（45）: scp命令">每天一个linux命令（45）: scp命令</span>
+        <span class="post-date" title="2017-01-13 10:53:48">2017/01/13</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/12/linux/每天一个linux命令（44）-rcp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（44）: rcp命令">每天一个linux命令（44）: rcp命令</span>
+        <span class="post-date" title="2017-01-12 10:36:06">2017/01/12</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/12/linux/每天一个linux命令（43）-telnet命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（43）: telnet命令">每天一个linux命令（43）: telnet命令</span>
+        <span class="post-date" title="2017-01-12 09:24:01">2017/01/12</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/11/linux/每天一个linux命令（42）-ss命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（42）: ss命令">每天一个linux命令（42）: ss命令</span>
+        <span class="post-date" title="2017-01-11 10:34:47">2017/01/11</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/10/linux/每天一个linux命令（41）-netstat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（41）: netstat命令">每天一个linux命令（41）: netstat命令</span>
+        <span class="post-date" title="2017-01-10 09:54:16">2017/01/10</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/09/linux/每天一个linux命令（40）-traceroute命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（40）: traceroute命令">每天一个linux命令（40）: traceroute命令</span>
+        <span class="post-date" title="2017-01-09 10:56:53">2017/01/09</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/08/linux/每天一个linux命令（39）-ping命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（39）: ping命令">每天一个linux命令（39）: ping命令</span>
+        <span class="post-date" title="2017-01-08 10:24:50">2017/01/08</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/07/linux/每天一个linux命令（38）-route命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（38）: route命令">每天一个linux命令（38）: route命令</span>
+        <span class="post-date" title="2017-01-07 10:16:34">2017/01/07</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/06/linux/每天一个linux命令（37）-ifconfig命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（37）: ifconfig命令">每天一个linux命令（37）: ifconfig命令</span>
+        <span class="post-date" title="2017-01-06 09:57:01">2017/01/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/05/linux/每天一个linux命令（36）-lsof命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（36）: lsof命令">每天一个linux命令（36）: lsof命令</span>
+        <span class="post-date" title="2017-01-05 10:28:13">2017/01/05</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/04/linux/每天一个linux命令（35）-iostat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（35）: iostat命令">每天一个linux命令（35）: iostat命令</span>
+        <span class="post-date" title="2017-01-04 10:10:02">2017/01/04</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/03/linux/每天一个linux命令（34）-vmstat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（34）: vmstat命令">每天一个linux命令（34）: vmstat命令</span>
+        <span class="post-date" title="2017-01-03 09:46:57">2017/01/03</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/02/linux/每天一个linux命令（33）-free命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（33）: free命令">每天一个linux命令（33）: free命令</span>
+        <span class="post-date" title="2017-01-02 21:43:26">2017/01/02</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/01/linux/每天一个linux命令（32）-top命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（32）: top命令">每天一个linux命令（32）: top命令</span>
+        <span class="post-date" title="2017-01-01 19:31:28">2017/01/01</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/31/linux/每天一个linux命令（31）-du命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（31）: du命令">每天一个linux命令（31）: du命令</span>
+        <span class="post-date" title="2016-12-31 14:36:01">2016/12/31</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/30/linux/每天一个linux命令（30）-df命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（30）: df命令">每天一个linux命令（30）: df命令</span>
+        <span class="post-date" title="2016-12-30 14:23:31">2016/12/30</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/29/linux/每天一个linux命令（29）-etc-group文件详解/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（29）: /etc/group文件详解">每天一个linux命令（29）: /etc/group文件详解</span>
+        <span class="post-date" title="2016-12-29 14:13:05">2016/12/29</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/28/linux/每天一个linux命令（28）-chown命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（28）: chown命令">每天一个linux命令（28）: chown命令</span>
+        <span class="post-date" title="2016-12-28 09:51:30">2016/12/28</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/27/linux/每天一个linux命令（27）-chgrp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（27）: chgrp命令">每天一个linux命令（27）: chgrp命令</span>
+        <span class="post-date" title="2016-12-27 09:40:06">2016/12/27</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/26/linux/每天一个linux命令（26）-chmod命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（26）: chmod命令">每天一个linux命令（26）: chmod命令</span>
+        <span class="post-date" title="2016-12-26 20:22:43">2016/12/26</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/25/linux/每天一个linux命令（25）-gzip命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（25）: gzip命令">每天一个linux命令（25）: gzip命令</span>
+        <span class="post-date" title="2016-12-25 16:55:15">2016/12/25</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/24/linux/每天一个linux命令（24）-tar命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（24）: tar命令">每天一个linux命令（24）: tar命令</span>
+        <span class="post-date" title="2016-12-24 10:24:17">2016/12/24</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/23/linux/每天一个linux命令（23）-用SecureCRT来上传和下载文件/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（23）: 用SecureCRT来上传和下载文件">每天一个linux命令（23）: 用SecureCRT来上传和下载文件</span>
+        <span class="post-date" title="2016-12-23 09:48:15">2016/12/23</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/22/linux/每天一个linux命令（22）-find命令的参数详解/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（22）: find命令的参数详解">每天一个linux命令（22）: find命令的参数详解</span>
+        <span class="post-date" title="2016-12-22 11:44:14">2016/12/22</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/21/linux/每天一个linux命令（21）-find命令之xargs/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（21）: find命令之xargs">每天一个linux命令（21）: find命令之xargs</span>
+        <span class="post-date" title="2016-12-21 11:08:01">2016/12/21</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/20/linux/每天一个linux命令（20）-find命令之exec/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（20）: find命令之exec">每天一个linux命令（20）: find命令之exec</span>
+        <span class="post-date" title="2016-12-20 10:47:32">2016/12/20</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/19/linux/每天一个linux命令（19）-find命令概览/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（19）: find命令概览">每天一个linux命令（19）: find命令概览</span>
+        <span class="post-date" title="2016-12-19 15:19:10">2016/12/19</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/18/linux/每天一个linux命令（18）-locate命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（18）: locate命令">每天一个linux命令（18）: locate命令</span>
+        <span class="post-date" title="2016-12-18 15:09:28">2016/12/18</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/17/linux/每天一个linux命令（17）-whereis命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（17）: whereis命令">每天一个linux命令（17）: whereis命令</span>
+        <span class="post-date" title="2016-12-17 10:42:58">2016/12/17</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/16/linux/每天一个linux命令（16）-which命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（16）: which命令">每天一个linux命令（16）: which命令</span>
+        <span class="post-date" title="2016-12-16 11:25:49">2016/12/16</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/15/linux/每天一个linux命令（15）-tail命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（15）: tail命令">每天一个linux命令（15）: tail命令</span>
+        <span class="post-date" title="2016-12-15 15:00:26">2016/12/15</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/14/linux/每天一个linux命令（14）-head命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（14）: head命令">每天一个linux命令（14）: head命令</span>
+        <span class="post-date" title="2016-12-14 14:35:49">2016/12/14</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/13/linux/每天一个linux命令（13）-less命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（13）: less命令">每天一个linux命令（13）: less命令</span>
+        <span class="post-date" title="2016-12-13 21:46:14">2016/12/13</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/12/linux/每天一个linux命令（12）-more命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（12）: more命令">每天一个linux命令（12）: more命令</span>
+        <span class="post-date" title="2016-12-12 21:29:39">2016/12/12</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/11/linux/每天一个linux命令（11）-nl命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（11）: nl命令">每天一个linux命令（11）: nl命令</span>
+        <span class="post-date" title="2016-12-11 21:11:48">2016/12/11</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/10/linux/每天一个linux命令（10）-cat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（10）: cat命令">每天一个linux命令（10）: cat命令</span>
+        <span class="post-date" title="2016-12-10 10:52:50">2016/12/10</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/09/linux/每天一个linux命令（9）-touch命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（9）: touch命令">每天一个linux命令（9）: touch命令</span>
+        <span class="post-date" title="2016-12-09 07:15:12">2016/12/09</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/08/linux/每天一个linux命令（8）-cp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（8）: cp命令">每天一个linux命令（8）: cp命令</span>
+        <span class="post-date" title="2016-12-08 16:31:43">2016/12/08</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/07/linux/每天一个linux命令（7）-mv命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（7）: mv命令">每天一个linux命令（7）: mv命令</span>
+        <span class="post-date" title="2016-12-07 15:55:20">2016/12/07</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/06/linux/每天一个linux命令（6）-rmdir命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（6）: rmdir命令">每天一个linux命令（6）: rmdir命令</span>
+        <span class="post-date" title="2016-12-06 15:24:32">2016/12/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/05/linux/每天一个linux命令（5）-rm命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（5）: rm命令">每天一个linux命令（5）: rm命令</span>
+        <span class="post-date" title="2016-12-05 13:40:38">2016/12/05</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/04/linux/每天一个linux命令（4）-mkdir命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（4）: mkdir命令">每天一个linux命令（4）: mkdir命令</span>
+        <span class="post-date" title="2016-12-04 09:27:32">2016/12/04</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/03/linux/每天一个linux命令（3）-pwd命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（3）: pwd命令">每天一个linux命令（3）: pwd命令</span>
+        <span class="post-date" title="2016-12-03 09:15:52">2016/12/03</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/02/linux/每天一个linux命令（2）-cd命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（2）: cd命令">每天一个linux命令（2）: cd命令</span>
+        <span class="post-date" title="2016-12-02 11:04:55">2016/12/02</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/01/linux/每天一个linux命令（1）-ls命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（1）: ls命令">每天一个linux命令（1）: ls命令</span>
+        <span class="post-date" title="2016-12-01 09:38:59">2016/12/01</span>
+    </a>
+    
+    <a  class="数据库 "
+       href="/2016/10/12/database/PostgreSQL常用操作/"
+       data-tag="PostgreSQL"
+       data-author="" >
+        <span class="post-title" title="PostgreSQL常用操作">PostgreSQL常用操作</span>
+        <span class="post-date" title="2016-10-12 20:27:07">2016/10/12</span>
+    </a>
+    
+    <a  class="数据库 "
+       href="/2016/10/12/database/PostgreSQL初体验/"
+       data-tag="PostgreSQL"
+       data-author="" >
+        <span class="post-title" title="PostgreSQL初体验">PostgreSQL初体验</span>
+        <span class="post-date" title="2016-10-12 19:49:40">2016/10/12</span>
+    </a>
+    
+    <a  class="数据库 "
+       href="/2016/10/12/database/PostgreSQL的安装/"
+       data-tag="PostgreSQL"
+       data-author="" >
+        <span class="post-title" title="PostgreSQL的介绍与安装">PostgreSQL的介绍与安装</span>
+        <span class="post-date" title="2016-10-12 15:44:16">2016/10/12</span>
+    </a>
+    
+</nav>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-linux/每天一个linux命令（40）-traceroute命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+      
+      <time class="date" title="2017-01-09 10:56:53">2017-Jan-09</time>
+      
+      
+      <span>字数:2,059</span>
+      
+      
+        <span id="busuanzi_container_page_pv">
+            阅读量:<span id="busuanzi_value_page_pv"></span>
+        </span>
+      
+      
+      <span class="tag">
+        
+      <a href="javascript:" class="color3">linux命令</a>
+        
+      </span>
+      
+      
+      
+  </div>
+    
+        <h1 class="article-title">每天一个linux命令（40）: traceroute命令</h1>
+    
+    <div class="toc-ref">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令参数"><span class="toc-text">命令参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用实例"><span class="toc-text">使用实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#windows之tracert"><span class="toc-text">windows之tracert</span></a></li></ol>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>　　通过traceroute我们可以知道信息从你的计算机到互联网另一端的主机是走的什么路径。当然每次数据包由某一同样的出发点（source）到达某一同样的目的地(destination)走的路径可能会不一样，但基本上来说大部分时候所走的路由是相同的。linux系统中，我们称之为traceroute,在MS Windows中为tracert。 traceroute通过发送小的数据包到目的设备直到其返回，来测量其需要多长时间。一条路径上的每个设备traceroute要测3次。输出结果中包括每次测试的时间(ms)和设备的名称（如有的话）及其IP地址。<br><a id="more"></a><br>　　在大多数情况下，我们会在linux主机系统下，直接执行命令行：<br>　　　　<code>traceroute hostname</code><br>　　而在Windows系统下是执行tracert的命令：<br>　　　　<code>tracert hostname</code></p>
+<h3 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h3><pre><code class="bash">$ traceroute [参数] [主机]
+</code></pre>
+<h3 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h3><p>　　traceroute指令让你追踪网络数据包的路由途径，预设数据包大小是40Bytes，用户可另行设置。<br>　　具体参数格式：traceroute [-dFlnrvx][-f&lt;存活数值&gt;][-g&lt;网关&gt;…][-i&lt;网络界面&gt;][-m&lt;存活数值&gt;][-p&lt;通信端口&gt;][-s&lt;来源地址&gt;][-t&lt;服务类型&gt;][-w&lt;超时秒数&gt;][主机名称或IP地址][数据包大小]</p>
+<h3 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-d</td>
+<td style="text-align:left">使用Socket层级的排错功能</td>
+</tr>
+<tr>
+<td style="text-align:left">-f</td>
+<td style="text-align:left">设置第一个检测数据包的存活数值TTL的大小</td>
+</tr>
+<tr>
+<td style="text-align:left">-F</td>
+<td style="text-align:left">设置勿离断位</td>
+</tr>
+<tr>
+<td style="text-align:left">-g</td>
+<td style="text-align:left">设置来源路由网关，最多可设置8个</td>
+</tr>
+<tr>
+<td style="text-align:left">-i</td>
+<td style="text-align:left">使用指定的网络界面送出数据包</td>
+</tr>
+<tr>
+<td style="text-align:left">-I</td>
+<td style="text-align:left">使用ICMP回应取代UDP资料信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-m</td>
+<td style="text-align:left">设置检测数据包的最大存活数值TTL的大小</td>
+</tr>
+<tr>
+<td style="text-align:left">-n</td>
+<td style="text-align:left">直接使用IP地址而非主机名称</td>
+</tr>
+<tr>
+<td style="text-align:left">-p</td>
+<td style="text-align:left">设置UDP传输协议的通信端口</td>
+</tr>
+<tr>
+<td style="text-align:left">-r</td>
+<td style="text-align:left">忽略普通的Routing Table，直接将数据包送到远端主机上</td>
+</tr>
+<tr>
+<td style="text-align:left">-s</td>
+<td style="text-align:left">设置本地主机送出数据包的IP地址</td>
+</tr>
+<tr>
+<td style="text-align:left">-t</td>
+<td style="text-align:left">设置检测数据包的TOS数值</td>
+</tr>
+<tr>
+<td style="text-align:left">-v</td>
+<td style="text-align:left">详细显示指令的执行过程</td>
+</tr>
+<tr>
+<td style="text-align:left">-w</td>
+<td style="text-align:left">设置等待远端主机回报的时间</td>
+</tr>
+<tr>
+<td style="text-align:left">-x</td>
+<td style="text-align:left">开启或关闭数据包的正确性检验</td>
+</tr>
+</tbody>
+</table>
+<h3 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h3><p><strong><code>例一</code>：traceroute 用法简单、最常用的用法</strong></p>
+<pre><code class="bash">$ traceroute yelog.github.com
+traceroute to yelog.github.com (151.101.192.133), 30 hops max, 60 byte packets
+ 1  vrouter (192.168.0.1)  0.443 ms  0.565 ms  0.684 ms
+ 2  112.208.32.1.pldt.net (112.208.32.1)  14.518 ms  22.454 ms  23.080 ms
+ 3  119.93.255.197 (119.93.255.197)  24.492 ms  25.380 ms  26.328 ms
+ 4  210.213.131.66.static.pldt.net (210.213.131.66)  29.942 ms 210.213.131.70.static.pldt.net (210.213.131.70)  28.209 ms  28.992 ms
+ 5  122.2.175.30.static.pldt.net (122.2.175.30)  32.429 ms  32.765 ms 210.213.128.29.static.pldt.net (210.213.128.29)  35.165 ms
+ 6  210.213.130.162.static.pldt.net (210.213.130.162)  32.147 ms  31.403 ms  32.107 ms
+ 7  las-b3-link.telia.net (62.115.13.128)  198.546 ms  190.829 ms  191.039 ms
+ 8  las-b21-link.telia.net (213.155.131.82)  194.301 ms las-b21-link.telia.net (62.115.116.179)  191.927 ms las-b21-link.telia.net (213.155.131.84)  194.433 ms
+ 9  * * *
+10  * * *
+</code></pre>
+<blockquote>
+<p><strong>说明：</strong><br>　　记录按序列号从1开始，每个纪录就是一跳 ，每跳表示一个网关，我们看到每行有三个时间，单位是 ms，其实就是-q的默认参数。探测数据包向每个网关发送三个数据包后，网关响应后返回的时间；如果您用 traceroute -q 4 www.58.com ，表示向每个网关发送4个数据包。<br>　　有时我们traceroute 一台主机时，会看到有一些行是以星号表示的。出现这样的情况，可能是防火墙封掉了ICMP的返回信息，所以我们得不到什么相关的数据包返回数据。<br>　　有时我们在某一网关处延时比较长，有可能是某台网关比较阻塞，也可能是物理设备本身的原因。当然如果某台DNS出现问题时，不能解析主机名、域名时，也会 有延时长的现象；您可以加-n 参数来避免DNS解析，以IP格式输出数据。<br>　　如果在局域网中的不同网段之间，我们可以通过traceroute 来排查问题所在，是主机的问题还是网关的问题。如果我们通过远程来访问某台服务器遇到问题时，我们用到traceroute 追踪数据包所经过的网关，提交IDC服务商，也有助于解决问题；但目前看来在国内解决这样的问题是比较困难的，就是我们发现问题所在，IDC服务商也不可能帮助我们解决。</p>
+</blockquote>
+<p><strong><code>例二</code>：跳数设置</strong></p>
+<pre><code class="bash">$ traceroute -m 10 www.baidu.com
+</code></pre>
+<p><strong><code>例三</code>：显示IP地址，不查主机名</strong></p>
+<pre><code class="bash">$ traceroute -n www.baidu.com
+</code></pre>
+<p><strong><code>例四</code>：探测包使用的基本UDP端口设置6888</strong></p>
+<pre><code class="bash">$ traceroute -p 6888 www.baidu.com
+</code></pre>
+<p><strong><code>例五</code>：把探测包的个数设置为值4</strong></p>
+<pre><code class="bash">$ traceroute -q 4 www.baidu.com
+</code></pre>
+<p><strong><code>例六</code>：绕过正常的路由表，直接发送到网络相连的主机</strong></p>
+<pre><code class="bash">$ traceroute -r www.baidu.com
+</code></pre>
+<p><strong><code>例七</code>：把对外发探测包的等待响应时间设置为3秒</strong></p>
+<pre><code class="bash">$ traceroute -w 3 www.baidu.com
+</code></pre>
+<blockquote>
+<p><strong>Traceroute的工作原理</strong><br>　　Traceroute最简单的基本用法是：traceroute hostname<br>　　Traceroute程序的设计是利用ICMP及IP header的TTL（Time To Live）栏位（field）。首先，traceroute送出一个TTL是1的IP datagram（其实，每次送出的为3个40字节的包，包括源地址，目的地址和包发出的时间标签）到目的地，当路径上的第一个路由器（router）收到这个datagram时，它将TTL减1。此时，TTL变为0了，所以该路由器会将此datagram丢掉，并送回一个「ICMP time exceeded」消息（包括发IP包的源地址，IP包的所有内容及路由器的IP地址），traceroute 收到这个消息后，便知道这个路由器存在于这个路径上，接着traceroute 再送出另一个TTL是2 的datagram，发现第2 个路由器…… traceroute 每次将送出的datagram的TTL 加1来发现另一个路由器，这个重复的动作一直持续到某个datagram 抵达目的地。当datagram到达目的地后，该主机并不会送回ICMP time exceeded消息，因为它已是目的地了，那么traceroute如何得知目的地到达了呢？<br>　　Traceroute在送出UDP datagrams到目的地时，它所选择送达的port number 是一个一般应用程序都不会用的号码（30000 以上），所以当此UDP datagram 到达目的地后该主机会送回一个「ICMP port unreachable」的消息，而当traceroute 收到这个消息时，便知道目的地已经到达了。所以traceroute 在Server端也是没有所谓的Daemon 程式。<br>　　Traceroute提取发 ICMP TTL到期消息设备的IP地址并作域名解析。每次 ，Traceroute都打印出一系列数据,包括所经过的路由设备的域名及 IP地址,三个包每次来回所花时间。</p>
+</blockquote>
+<h3 id="windows之tracert"><a href="#windows之tracert" class="headerlink" title="windows之tracert"></a>windows之tracert</h3><blockquote>
+<p><strong>格式：</strong></p>
+<pre><code class="bash">$ tracert [-d] [-h maximum_hops] [-j host-list] [-w timeout] target_name
+</code></pre>
+<p><strong>参数说明</strong><br>　　tracert [-d] [-h maximum_hops] [-j computer-list] [-w timeout] target_name<br>　　该诊断实用程序通过向目的地发送具有不同生存时间 (TL) 的 Internet 控制信息协议 (CMP) 回应报文，以确定至目的地的路由。路径上的每个路由器都要在转发该 ICMP 回应报文之前将其 TTL 值至少减 1，因此 TTL 是有效的跳转计数。当报文的 TTL 值减少到 0 时，路由器向源系统发回 ICMP 超时信息。通过发送 TTL 为 1 的第一个回应报文并且在随后的发送中每次将 TTL 值加 1，直到目标响应或达到最大 TTL 值，Tracert 可以确定路由。通过检查中间路由器发发回的 ICMP 超时 (ime Exceeded) 信息，可以确定路由器。注意，有些路由器“安静”地丢弃生存时间 (TLS) 过期的报文并且对 tracert 无效。<br><strong>参数：</strong><br>-d 指定不对计算机名解析地址。<br>-h maximum_hops 指定查找目标的跳转的最大数目。<br>-jcomputer-list 指定在 computer-list 中松散源路由。<br>-w timeout 等待由 timeout 对每个应答指定的毫秒数。<br>target_name 目标计算机的名称。</p>
+</blockquote>
+
+      
+    </div>
+</article>
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span>文章标题:</span>每天一个linux命令（40）: traceroute命令</p>
+    <p><span>文章字数:</span><span class="post-count">2,059</span></p>
+    <p><span>本文作者:</span><a href="javascript:void(0)" title="牵猪的仓鼠">牵猪的仓鼠</a></p>
+    <p><span>发布时间:</span>2017-01-09, 10:56:53</p>
+    <p><span>最后更新:</span>2017-03-13, 12:11:01</p>
+    <span>原始链接:</span><a class="post-url" href="/2017/01/09/linux/每天一个linux命令（40）-traceroute命令/" title="每天一个linux命令（40）: traceroute命令">http://s.amlove.cn/2017/01/09/linux/每天一个linux命令（40）-traceroute命令/</a>
+    <p>
+        <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+    
+        <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/01/09/linux/每天一个linux命令（40）-traceroute命令/" data-title="每天一个linux命令（40）: traceroute命令" data-url="http://s.amlove.cn/2017/01/09/linux/每天一个linux命令（40）-traceroute命令/"></div>
+    <script>
+        var duoshuoQuery;
+        function loadComment() {
+            duoshuoQuery = {short_name: $(".theme_duoshuo_domain").val()};
+            var d = document, s = d.createElement('script');
+            s.src = 'https://static.duoshuo.com/embed.js?t='+new Date().getTime();
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2017-2027 s.amlove.cn</p>
+
+    </div>
+</div>
+<div class="full-toc">
+    <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+</div>
+<div class="acParent"></div>
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <img src="/img/alipay.jpg" title="扫码支持">
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+</body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
+<script src="/js/script.js"></script>
+<script>
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['@牵猪的仓鼠','#Hexo','#入门','#PostgreSQL','#vim','#ftp','#linux命令',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        
+            $(".post .pjax table").addClass("green_title");
+        
+        
+        $("input[name=pay]").on("click", function () {
+            $(".shang_payimg img").attr("src","/img/"+$("input[name=pay]:checked").val()+".jpg");
+        })
+        
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1;
+            var $numbering = $('<ul/>').addClass('pre-numbering').attr("unselectable","on");
+            $(this).addClass('has-numbering')
+                    .parent()
+                    .append($numbering);
+            for(i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+        
+        $.getScript("//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+    }
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+</script>
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 3px;
+        border: 1px solid #C3CCD0;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        padding-left: 40px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 9px 2px 12px 5px;
+        text-align: right;
+        color: #AAA;
+    }
+</style>
+
+</html>
