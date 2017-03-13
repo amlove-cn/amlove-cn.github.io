@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://s.amlove.cn/"/>
-  <updated>2017-03-12T11:45:09.561Z</updated>
+  <updated>2017-03-13T05:08:09.836Z</updated>
   <id>http://s.amlove.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://s.amlove.cn/2017/03/12/hello-world/"/>
     <id>http://s.amlove.cn/2017/03/12/hello-world/</id>
     <published>2017-03-12T11:45:02.000Z</published>
-    <updated>2017-03-12T11:45:09.561Z</updated>
+    <updated>2017-03-13T05:08:09.836Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
@@ -57,7 +57,7 @@
     <link href="http://s.amlove.cn/2017/03/12/Hexo-%E6%96%B0%E6%89%8B%E8%AE%B0/"/>
     <id>http://s.amlove.cn/2017/03/12/Hexo-新手记/</id>
     <published>2017-03-12T11:35:02.000Z</published>
-    <updated>2017-03-12T11:52:22.019Z</updated>
+    <updated>2017-03-13T05:03:19.653Z</updated>
     
     <content type="html"><![CDATA[<p>准备使用 hexo 来写博客</p>
 <pre><code># 先安装
