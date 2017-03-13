@@ -1,0 +1,2037 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>辅助函数（Helpers） | 老鼠洞</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="辅助函数帮助您在模版中快速插入内容。辅助函数不能在源文件中使用。
+网址url_for在路径前加上根路径，从 Hexo 2.7 开始您应该使用此函数而不是 config.root + path。
+&amp;lt;%- url_for(path) %&amp;gt;
+
+relative_url取得与 from 相对的 to 路径。
+&amp;lt;%- relative_url(from, to) %&amp;gt;
+
+gravat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="辅助函数（Helpers）">
+<meta property="og:url" content="http://s.amlove.cn/2017/03/12/hexo/docs/helpers/index.html">
+<meta property="og:site_name" content="老鼠洞">
+<meta property="og:description" content="辅助函数帮助您在模版中快速插入内容。辅助函数不能在源文件中使用。
+网址url_for在路径前加上根路径，从 Hexo 2.7 开始您应该使用此函数而不是 config.root + path。
+&amp;lt;%- url_for(path) %&amp;gt;
+
+relative_url取得与 from 相对的 to 路径。
+&amp;lt;%- relative_url(from, to) %&amp;gt;
+
+gravat">
+<meta property="og:updated_time" content="2017-03-13T12:52:21.608Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="辅助函数（Helpers）">
+<meta name="twitter:description" content="辅助函数帮助您在模版中快速插入内容。辅助函数不能在源文件中使用。
+网址url_for在路径前加上根路径，从 Hexo 2.7 开始您应该使用此函数而不是 config.root + path。
+&amp;lt;%- url_for(path) %&amp;gt;
+
+relative_url取得与 from 相对的 to 路径。
+&amp;lt;%- relative_url(from, to) %&amp;gt;
+
+gravat">
+  
+  
+    <link rel="icon" href="/img/avatar.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link rel="stylesheet" href="/css/hl_theme/sublime.css">
+  
+  <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="/js/jquery.autocomplete.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+    <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_duoshuo_on" value="true">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_duoshuo_domain" value="amlove">
+</div>
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar" style="background-image:url(/img/avatar.jpg)"></a>
+<div class="author">
+    <span>牵猪的仓鼠</span>
+</div>
+<div class="icon">
+    
+    <a class="rss" title="rss" href="/atom.xml" target="_blank"></a>
+    
+    
+    <a class="github" title="github" href="https://github.com/amlove2" target="_blank"></a>
+    
+    
+    
+    
+    
+    
+    
+    <a class="weibo" title="weibo" href="http://weibo.com/vb2005xu" target="_blank"></a>
+    
+    
+    <a class="email" title="email" href="mailto:vb2005xu@sina.com"></a>
+    
+</div>
+<ul>
+    <li class="all active">全部文章</li>
+    
+    <li data-rel="数据库"> 数据库 </li>
+    
+    <li data-rel="linux"> linux </li>
+    
+    <li data-rel="hexo接口"> hexo接口 </li>
+    
+    <li data-rel="hexo指南"> hexo指南 </li>
+    
+    <li data-rel="hexo入门"> hexo入门 </li>
+    
+</ul>
+    </div>
+    <div class="nav-right">
+        <form onkeydown="if(event.keyCode==13){return false;}">
+    <input class="search" type="text" placeholder="Search..." autocomplete="off">
+    <i class="cross"></i>
+    <span>
+        <label for="tagswitch">Tags:</label>
+        <input id="tagswitch" type="checkbox">
+    </span>
+</form>
+<ul class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">PostgreSQL</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">linux命令</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">vim</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">ftp</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">hexo接口</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">hexo指南</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</ul>
+
+<nav>
+    
+    <a id="top" class="hexo接口 "
+       href="/2017/03/12/hexo/api/Hexo接口说明/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="Hexo 接口说明">Hexo 接口说明</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a id="top" class="hexo入门 "
+       href="/2017/03/12/hexo/learn/Hexo-新手记/"
+       data-tag="hexo"
+       data-author="" >
+        <span class="post-title" title="Hexo 新手记">Hexo 新手记</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a id="top" class="hexo指南 "
+       href="/2017/03/12/hexo/docs/hexo指南/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="Hexo 指南">Hexo 指南</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a id="top" class="linux "
+       href="/2017/01/23/linux/每天一个linux命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令">每天一个linux命令</span>
+        <span class="post-date" title="2017-01-23 11:41:48">2017/01/23</span>
+    </a>
+    
+    <a id="top" class="linux "
+       href="/2017/03/06/linux/Vim命令速查表/"
+       data-tag="vim"
+       data-author="" >
+        <span class="post-title" title="Vim命令速查表">Vim命令速查表</span>
+        <span class="post-date" title="2017-03-06 11:23:36">2017/03/06</span>
+    </a>
+    
+    <a  class="hexo入门 "
+       href="/2017/03/12/hexo/learn/hello-world/"
+       data-tag="hexo"
+       data-author="" >
+        <span class="post-title" title="Hello world on Hexo!">Hello world on Hexo!</span>
+        <span class="post-date" title="2017-03-12 19:45:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/writing/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="写作">写作</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/variables/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="变量">变量</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/console/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="控制台（Console）">控制台（Console）</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/troubleshooting/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="问题解答">问题解答</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/themes/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="主题">主题</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/templates/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="模版">模版</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/server/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="服务器">服务器</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/plugins/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="插件">插件</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/migration/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="迁移">迁移</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/permalinks/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="永久链接（Permalinks）">永久链接（Permalinks）</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/box/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="Box">Box</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/internationalization/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="国际化（i18n）">国际化（i18n）</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/configuration/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="配置">配置</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/helpers/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="辅助函数（Helpers）">辅助函数（Helpers）</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/generating/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="生成文件">生成文件</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/front-matter/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="Front-matter">Front-matter</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/deployment/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="部署">部署</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/data-files/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="数据文件">数据文件</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/contributing/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="贡献">贡献</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/tag-plugins/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="标签插件（Tag Plugins）">标签插件（Tag Plugins）</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/commands/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="指令">指令</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/asset-folders/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="资源文件夹">资源文件夹</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/tag/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="标签插件（Tag）">标签插件（Tag）</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/themes/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="主题">主题</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/scaffolds/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="脚手架（Scaffold）">脚手架（Scaffold）</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/rendering/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="渲染">渲染</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/router/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="路由">路由</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/renderer/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="渲染引擎（Renderer）">渲染引擎（Renderer）</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/processor/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="处理器（Processor）">处理器（Processor）</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/locals/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="局部变量">局部变量</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/posts/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="文章">文章</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/migrator/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="迁移器（Migrator）">迁移器（Migrator）</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/index/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="API">API</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/helper/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="辅助函数（Helper）">辅助函数（Helper）</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/filter/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="过滤器（Filter）">过滤器（Filter）</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/deployer/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="部署器（Deployer）">部署器（Deployer）</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/generator/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="生成器（Generator）">生成器（Generator）</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo接口 "
+       href="/2017/03/12/hexo/api/events/"
+       data-tag="hexo,hexo接口"
+       data-author="" >
+        <span class="post-title" title="事件">事件</span>
+        <span class="post-date" title="2017-03-12 19:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/setup/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="建站">建站</span>
+        <span class="post-date" title="2017-03-12 01:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="hexo指南 "
+       href="/2017/03/12/hexo/docs/index/"
+       data-tag="hexo,hexo指南"
+       data-author="" >
+        <span class="post-title" title="文档">文档</span>
+        <span class="post-date" title="2017-03-12 00:35:02">2017/03/12</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/03/06/linux/如何在linux中搭建ftp服务/"
+       data-tag="ftp"
+       data-author="" >
+        <span class="post-title" title="如何在linux中搭建ftp服务">如何在linux中搭建ftp服务</span>
+        <span class="post-date" title="2017-03-06 08:47:48">2017/03/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/03/05/linux/每天一个linux命令（57）-sftp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（57）: sftp命令">每天一个linux命令（57）: sftp命令</span>
+        <span class="post-date" title="2017-03-05 16:29:38">2017/03/05</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/02/20/linux/每天一个linux命令（56）-tailf命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（56）: tailf命令">每天一个linux命令（56）: tailf命令</span>
+        <span class="post-date" title="2017-02-20 15:11:06">2017/02/20</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/23/linux/每天一个linux命令（55）-crontab命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（55）: crontab命令">每天一个linux命令（55）: crontab命令</span>
+        <span class="post-date" title="2017-01-23 10:44:50">2017/01/23</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/22/linux/每天一个linux命令（54）-at命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（54）: at命令">每天一个linux命令（54）: at命令</span>
+        <span class="post-date" title="2017-01-22 10:23:44">2017/01/22</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/21/linux/每天一个linux命令（53）-watch命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（53）: watch命令">每天一个linux命令（53）: watch命令</span>
+        <span class="post-date" title="2017-01-21 10:12:30">2017/01/21</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/20/linux/每天一个linux命令（52）-ps命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（52）: ps命令">每天一个linux命令（52）: ps命令</span>
+        <span class="post-date" title="2017-01-20 09:46:16">2017/01/20</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/19/linux/每天一个linux命令（51）-wc命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（51）: wc命令">每天一个linux命令（51）: wc命令</span>
+        <span class="post-date" title="2017-01-19 09:33:59">2017/01/19</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/18/linux/每天一个linux命令（50）-grep命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（50）: grep命令">每天一个linux命令（50）: grep命令</span>
+        <span class="post-date" title="2017-01-18 10:12:46">2017/01/18</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/17/linux/每天一个linux命令（49）-cal命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（49）: cal命令">每天一个linux命令（49）: cal命令</span>
+        <span class="post-date" title="2017-01-17 09:38:32">2017/01/17</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/16/linux/每天一个linux命令（48）-date命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（48）: date命令">每天一个linux命令（48）: date命令</span>
+        <span class="post-date" title="2017-01-16 14:39:27">2017/01/16</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/15/linux/每天一个linux命令（47）-diff命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（47）: diff命令">每天一个linux命令（47）: diff命令</span>
+        <span class="post-date" title="2017-01-15 14:08:08">2017/01/15</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/14/linux/每天一个linux命令（46）-ln命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（46）: ln命令">每天一个linux命令（46）: ln命令</span>
+        <span class="post-date" title="2017-01-14 11:00:33">2017/01/14</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/13/linux/每天一个linux命令（45）-scp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（45）: scp命令">每天一个linux命令（45）: scp命令</span>
+        <span class="post-date" title="2017-01-13 10:53:48">2017/01/13</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/12/linux/每天一个linux命令（44）-rcp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（44）: rcp命令">每天一个linux命令（44）: rcp命令</span>
+        <span class="post-date" title="2017-01-12 10:36:06">2017/01/12</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/12/linux/每天一个linux命令（43）-telnet命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（43）: telnet命令">每天一个linux命令（43）: telnet命令</span>
+        <span class="post-date" title="2017-01-12 09:24:01">2017/01/12</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/11/linux/每天一个linux命令（42）-ss命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（42）: ss命令">每天一个linux命令（42）: ss命令</span>
+        <span class="post-date" title="2017-01-11 10:34:47">2017/01/11</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/10/linux/每天一个linux命令（41）-netstat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（41）: netstat命令">每天一个linux命令（41）: netstat命令</span>
+        <span class="post-date" title="2017-01-10 09:54:16">2017/01/10</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/09/linux/每天一个linux命令（40）-traceroute命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（40）: traceroute命令">每天一个linux命令（40）: traceroute命令</span>
+        <span class="post-date" title="2017-01-09 10:56:53">2017/01/09</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/08/linux/每天一个linux命令（39）-ping命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（39）: ping命令">每天一个linux命令（39）: ping命令</span>
+        <span class="post-date" title="2017-01-08 10:24:50">2017/01/08</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/07/linux/每天一个linux命令（38）-route命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（38）: route命令">每天一个linux命令（38）: route命令</span>
+        <span class="post-date" title="2017-01-07 10:16:34">2017/01/07</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/06/linux/每天一个linux命令（37）-ifconfig命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（37）: ifconfig命令">每天一个linux命令（37）: ifconfig命令</span>
+        <span class="post-date" title="2017-01-06 09:57:01">2017/01/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/05/linux/每天一个linux命令（36）-lsof命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（36）: lsof命令">每天一个linux命令（36）: lsof命令</span>
+        <span class="post-date" title="2017-01-05 10:28:13">2017/01/05</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/04/linux/每天一个linux命令（35）-iostat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（35）: iostat命令">每天一个linux命令（35）: iostat命令</span>
+        <span class="post-date" title="2017-01-04 10:10:02">2017/01/04</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/03/linux/每天一个linux命令（34）-vmstat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（34）: vmstat命令">每天一个linux命令（34）: vmstat命令</span>
+        <span class="post-date" title="2017-01-03 09:46:57">2017/01/03</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/02/linux/每天一个linux命令（33）-free命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（33）: free命令">每天一个linux命令（33）: free命令</span>
+        <span class="post-date" title="2017-01-02 21:43:26">2017/01/02</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2017/01/01/linux/每天一个linux命令（32）-top命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（32）: top命令">每天一个linux命令（32）: top命令</span>
+        <span class="post-date" title="2017-01-01 19:31:28">2017/01/01</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/31/linux/每天一个linux命令（31）-du命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（31）: du命令">每天一个linux命令（31）: du命令</span>
+        <span class="post-date" title="2016-12-31 14:36:01">2016/12/31</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/30/linux/每天一个linux命令（30）-df命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（30）: df命令">每天一个linux命令（30）: df命令</span>
+        <span class="post-date" title="2016-12-30 14:23:31">2016/12/30</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/29/linux/每天一个linux命令（29）-etc-group文件详解/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（29）: /etc/group文件详解">每天一个linux命令（29）: /etc/group文件详解</span>
+        <span class="post-date" title="2016-12-29 14:13:05">2016/12/29</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/28/linux/每天一个linux命令（28）-chown命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（28）: chown命令">每天一个linux命令（28）: chown命令</span>
+        <span class="post-date" title="2016-12-28 09:51:30">2016/12/28</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/27/linux/每天一个linux命令（27）-chgrp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（27）: chgrp命令">每天一个linux命令（27）: chgrp命令</span>
+        <span class="post-date" title="2016-12-27 09:40:06">2016/12/27</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/26/linux/每天一个linux命令（26）-chmod命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（26）: chmod命令">每天一个linux命令（26）: chmod命令</span>
+        <span class="post-date" title="2016-12-26 20:22:43">2016/12/26</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/25/linux/每天一个linux命令（25）-gzip命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（25）: gzip命令">每天一个linux命令（25）: gzip命令</span>
+        <span class="post-date" title="2016-12-25 16:55:15">2016/12/25</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/24/linux/每天一个linux命令（24）-tar命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（24）: tar命令">每天一个linux命令（24）: tar命令</span>
+        <span class="post-date" title="2016-12-24 10:24:17">2016/12/24</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/23/linux/每天一个linux命令（23）-用SecureCRT来上传和下载文件/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（23）: 用SecureCRT来上传和下载文件">每天一个linux命令（23）: 用SecureCRT来上传和下载文件</span>
+        <span class="post-date" title="2016-12-23 09:48:15">2016/12/23</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/22/linux/每天一个linux命令（22）-find命令的参数详解/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（22）: find命令的参数详解">每天一个linux命令（22）: find命令的参数详解</span>
+        <span class="post-date" title="2016-12-22 11:44:14">2016/12/22</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/21/linux/每天一个linux命令（21）-find命令之xargs/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（21）: find命令之xargs">每天一个linux命令（21）: find命令之xargs</span>
+        <span class="post-date" title="2016-12-21 11:08:01">2016/12/21</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/20/linux/每天一个linux命令（20）-find命令之exec/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（20）: find命令之exec">每天一个linux命令（20）: find命令之exec</span>
+        <span class="post-date" title="2016-12-20 10:47:32">2016/12/20</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/19/linux/每天一个linux命令（19）-find命令概览/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（19）: find命令概览">每天一个linux命令（19）: find命令概览</span>
+        <span class="post-date" title="2016-12-19 15:19:10">2016/12/19</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/18/linux/每天一个linux命令（18）-locate命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（18）: locate命令">每天一个linux命令（18）: locate命令</span>
+        <span class="post-date" title="2016-12-18 15:09:28">2016/12/18</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/17/linux/每天一个linux命令（17）-whereis命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（17）: whereis命令">每天一个linux命令（17）: whereis命令</span>
+        <span class="post-date" title="2016-12-17 10:42:58">2016/12/17</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/16/linux/每天一个linux命令（16）-which命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（16）: which命令">每天一个linux命令（16）: which命令</span>
+        <span class="post-date" title="2016-12-16 11:25:49">2016/12/16</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/15/linux/每天一个linux命令（15）-tail命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（15）: tail命令">每天一个linux命令（15）: tail命令</span>
+        <span class="post-date" title="2016-12-15 15:00:26">2016/12/15</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/14/linux/每天一个linux命令（14）-head命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（14）: head命令">每天一个linux命令（14）: head命令</span>
+        <span class="post-date" title="2016-12-14 14:35:49">2016/12/14</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/13/linux/每天一个linux命令（13）-less命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（13）: less命令">每天一个linux命令（13）: less命令</span>
+        <span class="post-date" title="2016-12-13 21:46:14">2016/12/13</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/12/linux/每天一个linux命令（12）-more命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（12）: more命令">每天一个linux命令（12）: more命令</span>
+        <span class="post-date" title="2016-12-12 21:29:39">2016/12/12</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/11/linux/每天一个linux命令（11）-nl命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（11）: nl命令">每天一个linux命令（11）: nl命令</span>
+        <span class="post-date" title="2016-12-11 21:11:48">2016/12/11</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/10/linux/每天一个linux命令（10）-cat命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（10）: cat命令">每天一个linux命令（10）: cat命令</span>
+        <span class="post-date" title="2016-12-10 10:52:50">2016/12/10</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/09/linux/每天一个linux命令（9）-touch命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（9）: touch命令">每天一个linux命令（9）: touch命令</span>
+        <span class="post-date" title="2016-12-09 07:15:12">2016/12/09</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/08/linux/每天一个linux命令（8）-cp命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（8）: cp命令">每天一个linux命令（8）: cp命令</span>
+        <span class="post-date" title="2016-12-08 16:31:43">2016/12/08</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/07/linux/每天一个linux命令（7）-mv命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（7）: mv命令">每天一个linux命令（7）: mv命令</span>
+        <span class="post-date" title="2016-12-07 15:55:20">2016/12/07</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/06/linux/每天一个linux命令（6）-rmdir命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（6）: rmdir命令">每天一个linux命令（6）: rmdir命令</span>
+        <span class="post-date" title="2016-12-06 15:24:32">2016/12/06</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/05/linux/每天一个linux命令（5）-rm命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（5）: rm命令">每天一个linux命令（5）: rm命令</span>
+        <span class="post-date" title="2016-12-05 13:40:38">2016/12/05</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/04/linux/每天一个linux命令（4）-mkdir命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（4）: mkdir命令">每天一个linux命令（4）: mkdir命令</span>
+        <span class="post-date" title="2016-12-04 09:27:32">2016/12/04</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/03/linux/每天一个linux命令（3）-pwd命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（3）: pwd命令">每天一个linux命令（3）: pwd命令</span>
+        <span class="post-date" title="2016-12-03 09:15:52">2016/12/03</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/02/linux/每天一个linux命令（2）-cd命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（2）: cd命令">每天一个linux命令（2）: cd命令</span>
+        <span class="post-date" title="2016-12-02 11:04:55">2016/12/02</span>
+    </a>
+    
+    <a  class="linux "
+       href="/2016/12/01/linux/每天一个linux命令（1）-ls命令/"
+       data-tag="linux命令"
+       data-author="" >
+        <span class="post-title" title="每天一个linux命令（1）: ls命令">每天一个linux命令（1）: ls命令</span>
+        <span class="post-date" title="2016-12-01 09:38:59">2016/12/01</span>
+    </a>
+    
+    <a  class="数据库 "
+       href="/2016/10/12/database/PostgreSQL常用操作/"
+       data-tag="PostgreSQL"
+       data-author="" >
+        <span class="post-title" title="PostgreSQL常用操作">PostgreSQL常用操作</span>
+        <span class="post-date" title="2016-10-12 20:27:07">2016/10/12</span>
+    </a>
+    
+    <a  class="数据库 "
+       href="/2016/10/12/database/PostgreSQL初体验/"
+       data-tag="PostgreSQL"
+       data-author="" >
+        <span class="post-title" title="PostgreSQL初体验">PostgreSQL初体验</span>
+        <span class="post-date" title="2016-10-12 19:49:40">2016/10/12</span>
+    </a>
+    
+    <a  class="数据库 "
+       href="/2016/10/12/database/PostgreSQL的安装/"
+       data-tag="PostgreSQL"
+       data-author="" >
+        <span class="post-title" title="PostgreSQL的介绍与安装">PostgreSQL的介绍与安装</span>
+        <span class="post-date" title="2016-10-12 15:44:16">2016/10/12</span>
+    </a>
+    
+</nav>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-hexo/docs/helpers" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+      
+      <time class="date" title="2017-03-12 19:35:02">2017-Mar-12</time>
+      
+      
+      <span>字数:2,475</span>
+      
+      
+        <span id="busuanzi_container_page_pv">
+            阅读量:<span id="busuanzi_value_page_pv"></span>
+        </span>
+      
+      
+      <span class="tag">
+        
+      <a href="javascript:" class="color5">hexo</a>
+        
+      <a href="javascript:" class="color2">hexo指南</a>
+        
+      </span>
+      
+      
+      
+  </div>
+    
+        <h1 class="article-title">辅助函数（Helpers）</h1>
+    
+    <div class="toc-ref">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#网址"><span class="toc-text">网址</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#url-for"><span class="toc-text">url_for</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#relative-url"><span class="toc-text">relative_url</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gravatar"><span class="toc-text">gravatar</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML-标签"><span class="toc-text">HTML 标签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#css"><span class="toc-text">css</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#js"><span class="toc-text">js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#link-to"><span class="toc-text">link_to</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mail-to"><span class="toc-text">mail_to</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#image-tag"><span class="toc-text">image_tag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#favicon-tag"><span class="toc-text">favicon_tag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#feed-tag"><span class="toc-text">feed_tag</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条件函数"><span class="toc-text">条件函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#is-current"><span class="toc-text">is_current</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#is-home"><span class="toc-text">is_home</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#is-post"><span class="toc-text">is_post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#is-archive"><span class="toc-text">is_archive</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#is-year"><span class="toc-text">is_year</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#is-month"><span class="toc-text">is_month</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#is-category"><span class="toc-text">is_category</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#is-tag"><span class="toc-text">is_tag</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串处理"><span class="toc-text">字符串处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#trim"><span class="toc-text">trim</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#strip-html"><span class="toc-text">strip_html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#titlecase"><span class="toc-text">titlecase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#markdown"><span class="toc-text">markdown</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#render"><span class="toc-text">render</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#word-wrap"><span class="toc-text">word_wrap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#truncate"><span class="toc-text">truncate</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板"><span class="toc-text">模板</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#partial"><span class="toc-text">partial</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fragment-cache"><span class="toc-text">fragment_cache</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#日期与时间"><span class="toc-text">日期与时间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#date"><span class="toc-text">date</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#date-xml"><span class="toc-text">date_xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#time"><span class="toc-text">time</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#full-date"><span class="toc-text">full_date</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#moment"><span class="toc-text">moment</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#列表"><span class="toc-text">列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#list-categories"><span class="toc-text">list_categories</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list-tags"><span class="toc-text">list_tags</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list-archives"><span class="toc-text">list_archives</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list-posts"><span class="toc-text">list_posts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tagcloud"><span class="toc-text">tagcloud</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#paginator"><span class="toc-text">paginator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#search-form"><span class="toc-text">search_form</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#number-format"><span class="toc-text">number_format</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#open-graph"><span class="toc-text">open_graph</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#toc"><span class="toc-text">toc</span></a></li></ol></li></ol>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>辅助函数帮助您在模版中快速插入内容。辅助函数不能在源文件中使用。</p>
+<h2 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h2><h3 id="url-for"><a href="#url-for" class="headerlink" title="url_for"></a>url_for</h3><p>在路径前加上根路径，从 Hexo 2.7 开始您应该使用此函数而不是 <code>config.root + path</code>。</p>
+<pre><code class="js">&lt;%- url_for(path) %&gt;
+</code></pre>
+<h3 id="relative-url"><a href="#relative-url" class="headerlink" title="relative_url"></a>relative_url</h3><p>取得与 <code>from</code> 相对的 <code>to</code> 路径。</p>
+<pre><code class="js">&lt;%- relative_url(from, to) %&gt;
+</code></pre>
+<h3 id="gravatar"><a href="#gravatar" class="headerlink" title="gravatar"></a>gravatar</h3><p>插入 Gravatar 图片。<br>如果你不指定 <code>options</code> 参数，将会应用默认参数。否则，你可以将其设置为一个数字，这个数字将会作为 Gravatar 的大小参数。最后，如果你设置它一个对象，它将会被转换为 Gravatar 的一个查询字符串参数。</p>
+<pre><code class="js">&lt;%- gravatar(email, [options]);
+</code></pre>
+<p><strong>示例：</strong></p>
+<pre><code class="js">&lt;%- gravatar(&#39;a@abc.com&#39;) %&gt;
+// http://www.gravatar.com/avatar/b9b00e66c6b8a70f88c73cb6bdb06787
+
+&lt;%- gravatar(&#39;a@abc.com&#39;, 40) %&gt;
+// http://www.gravatar.com/avatar/b9b00e66c6b8a70f88c73cb6bdb06787?s=40
+
+&lt;%- gravatar(&#39;a@abc.com&#39; {s: 40, d: &#39;http://example.com/image.png&#39;}) %&gt;
+// http://www.gravatar.com/avatar/b9b00e66c6b8a70f88c73cb6bdb06787?s=40&amp;d=http%3A%2F%2Fexample.com%2Fimage.png
+</code></pre>
+<h2 id="HTML-标签"><a href="#HTML-标签" class="headerlink" title="HTML 标签"></a>HTML 标签</h2><h3 id="css"><a href="#css" class="headerlink" title="css"></a>css</h3><p>载入 CSS 文件。<code>path</code> 可以是数组或字符串，如果 <code>path</code> 开头不是 <code>/</code> 或任何协议，则会自动加上根路径；如果后面没有加上 <code>.css</code> 扩展名的话，也会自动加上。</p>
+<pre><code class="js">&lt;%- css(path, ...) %&gt;
+</code></pre>
+<p><strong>示例：</strong></p>
+<pre><code class="js">&lt;%- css(&#39;style.css&#39;) %&gt;
+// &lt;link rel=&quot;stylesheet&quot; href=&quot;/style.css&quot; type=&quot;text/css&quot;&gt;
+
+&lt;%- css([&#39;style.css&#39;, &#39;screen.css&#39;]) %&gt;
+// &lt;link rel=&quot;stylesheet&quot; href=&quot;/style.css&quot; type=&quot;text/css&quot;&gt;
+// &lt;link rel=&quot;stylesheet&quot; href=&quot;/screen.css&quot; type=&quot;text/css&quot;&gt;
+</code></pre>
+<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><p>载入 JavaScript 文件。<code>path</code> 可以是数组或字符串，如果 <code>path</code> 开头不是 <code>/</code> 或任何协议，则会自动加上根路径；如果后面没有加上 <code>.js</code> 扩展名的话，也会自动加上。</p>
+<pre><code class="js">&lt;%- js(path, ...) %&gt;
+</code></pre>
+<p><strong>示例：</strong></p>
+<pre><code class="js">&lt;%- js(&#39;script.js&#39;) %&gt;
+// &lt;script type=&quot;text/javascript&quot; src=&quot;/script.js&quot;&gt;&lt;/script&gt;
+
+&lt;%- js([&#39;script.js&#39;, &#39;gallery.js&#39;]) %&gt;
+// &lt;script type=&quot;text/javascript&quot; src=&quot;/script.js&quot;&gt;&lt;/script&gt;
+// &lt;script type=&quot;text/javascript&quot; src=&quot;/gallery.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h3 id="link-to"><a href="#link-to" class="headerlink" title="link_to"></a>link_to</h3><p>插入链接。</p>
+<pre><code class="js">&lt;%- link_to(path, [text], [options]) %&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>external</code></td>
+<td>在新视窗打开链接</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>class</code></td>
+<td>Class 名称</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>ID</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例：</strong></p>
+<pre><code class="js">&lt;%- link_to(&#39;http://www.google.com&#39;) %&gt;
+// &lt;a href=&quot;http://www.google.com&quot; title=&quot;http://www.google.com&quot;&gt;http://www.google.com&lt;/a&gt;
+
+&lt;%- link_to(&#39;http://www.google.com&#39;, &#39;Google&#39;) %&gt;
+// &lt;a href=&quot;http://www.google.com&quot; title=&quot;Google&quot;&gt;Google&lt;/a&gt;
+
+&lt;%- link_to(&#39;http://www.google.com&#39;, &#39;Google&#39;, {external: true}) %&gt;
+// &lt;a href=&quot;http://www.google.com&quot; title=&quot;Google&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Google&lt;/a&gt;
+</code></pre>
+<h3 id="mail-to"><a href="#mail-to" class="headerlink" title="mail_to"></a>mail_to</h3><p>插入电子邮箱链接。</p>
+<pre><code class="js">&lt;%- mail_to(path, [text], [options]) %&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>class</code></td>
+<td>Class 名称</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>ID</td>
+</tr>
+<tr>
+<td><code>subject</code></td>
+<td>邮件主题</td>
+</tr>
+<tr>
+<td><code>cc</code></td>
+<td>抄送（CC）</td>
+</tr>
+<tr>
+<td><code>bcc</code></td>
+<td>密送（BCC）</td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td>邮件内容</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例：</strong></p>
+<pre><code class="js">&lt;%- mail_to(&#39;a@abc.com&#39;) %&gt;
+// &lt;a href=&quot;mailto:a@abc.com&quot; title=&quot;a@abc.com&quot;&gt;a@abc.com&lt;/a&gt;
+
+&lt;%- mail_to(&#39;a@abc.com&#39;, &#39;Email&#39;) %&gt;
+// &lt;a href=&quot;mailto:a@abc.com&quot; title=&quot;Email&quot;&gt;Email&lt;/a&gt;
+</code></pre>
+<h3 id="image-tag"><a href="#image-tag" class="headerlink" title="image_tag"></a>image_tag</h3><p>插入图片。</p>
+<pre><code class="js">&lt;%- image_tag(path, [options]) %&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alt</code></td>
+<td>图片的替代文字</td>
+</tr>
+<tr>
+<td><code>class</code></td>
+<td>Class 名称</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>ID</td>
+</tr>
+<tr>
+<td><code>width</code></td>
+<td>图片宽度</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td>图片高度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="favicon-tag"><a href="#favicon-tag" class="headerlink" title="favicon_tag"></a>favicon_tag</h3><p>插入 favicon。</p>
+<pre><code class="js">&lt;%- favicon_tag(path) %&gt;
+</code></pre>
+<h3 id="feed-tag"><a href="#feed-tag" class="headerlink" title="feed_tag"></a>feed_tag</h3><p>插入 feed 链接。</p>
+<pre><code class="js">&lt;%- feed_tag(path, [options]) %&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>Feed 标题</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>Feed 类型</td>
+<td>atom</td>
+</tr>
+</tbody>
+</table>
+<h2 id="条件函数"><a href="#条件函数" class="headerlink" title="条件函数"></a>条件函数</h2><h3 id="is-current"><a href="#is-current" class="headerlink" title="is_current"></a>is_current</h3><p>检查 <code>path</code> 是否符合目前页面的网址。开启 <code>strict</code> 选项启用严格比对。</p>
+<pre><code class="js">&lt;%- is_current(path, [strict]) %&gt;
+</code></pre>
+<h3 id="is-home"><a href="#is-home" class="headerlink" title="is_home"></a>is_home</h3><p>检查目前是否为首页。</p>
+<pre><code class="js">&lt;%- is_home() %&gt;
+</code></pre>
+<h3 id="is-post"><a href="#is-post" class="headerlink" title="is_post"></a>is_post</h3><p>检查目前是否为文章。</p>
+<pre><code class="js">&lt;%- is_post() %&gt;
+</code></pre>
+<h3 id="is-archive"><a href="#is-archive" class="headerlink" title="is_archive"></a>is_archive</h3><p>检查目前是否为存档页面。</p>
+<pre><code class="js">&lt;%- is_archive() %&gt;
+</code></pre>
+<h3 id="is-year"><a href="#is-year" class="headerlink" title="is_year"></a>is_year</h3><p>检查目前是否为年度归档页面。</p>
+<pre><code class="js">&lt;%- is_year() %&gt;
+</code></pre>
+<h3 id="is-month"><a href="#is-month" class="headerlink" title="is_month"></a>is_month</h3><p>检查目前是否为月度归档页面。</p>
+<pre><code class="js">&lt;%- is_month() %&gt;
+</code></pre>
+<h3 id="is-category"><a href="#is-category" class="headerlink" title="is_category"></a>is_category</h3><p>检查目前是否为分类归档页面。<br>如果给定一个字符串作为参数，将会检查目前是否为指定分类。</p>
+<pre><code class="js">&lt;%- is_category() %&gt;
+&lt;%- is_category(&#39;hobby&#39;) %&gt;
+</code></pre>
+<h3 id="is-tag"><a href="#is-tag" class="headerlink" title="is_tag"></a>is_tag</h3><p>检查目前是否为标签归档页面。<br>如果给定一个字符串作为参数，将会检查目前是否为指定标签。</p>
+<pre><code class="js">&lt;%- is_tag() %&gt;
+&lt;%- is_tag(&#39;hobby&#39;) %&gt;
+</code></pre>
+<h2 id="字符串处理"><a href="#字符串处理" class="headerlink" title="字符串处理"></a>字符串处理</h2><h3 id="trim"><a href="#trim" class="headerlink" title="trim"></a>trim</h3><p>清除字符串开头和结尾的空格。</p>
+<pre><code class="js">&lt;%- trim(string) %&gt;
+</code></pre>
+<h3 id="strip-html"><a href="#strip-html" class="headerlink" title="strip_html"></a>strip_html</h3><p>清除字符串中的 HTML 标签。</p>
+<pre><code class="js">&lt;%- strip_html(string) %&gt;
+</code></pre>
+<p><strong>示例：</strong></p>
+<pre><code class="js">&lt;%- strip_html(&#39;It&#39;s not &lt;b&gt;important&lt;/b&gt; anymore!&#39;) %&gt;
+// It&#39;s not important anymore!
+</code></pre>
+<h3 id="titlecase"><a href="#titlecase" class="headerlink" title="titlecase"></a>titlecase</h3><p>把字符串转换为正确的 Title case。</p>
+<pre><code class="js">&lt;%- titlecase(string) %&gt;
+</code></pre>
+<p><strong>示例：</strong></p>
+<pre><code class="js">&lt;%- titlecase(&#39;this is an apple&#39;) %&gt;
+# This is an Apple
+</code></pre>
+<h3 id="markdown"><a href="#markdown" class="headerlink" title="markdown"></a>markdown</h3><p>使用 Markdown 解析字符串。</p>
+<pre><code class="js">&lt;%- markdown(str) %&gt;
+</code></pre>
+<p><strong>示例：</strong></p>
+<pre><code class="js">&lt;%- markdown(&#39;make me **strong**&#39;) %&gt;
+// make me &lt;strong&gt;strong&lt;/strong&gt;
+</code></pre>
+<h3 id="render"><a href="#render" class="headerlink" title="render"></a>render</h3><p>解析字符串。</p>
+<pre><code class="js">&lt;%- render(str, engine, [options]) %&gt;
+</code></pre>
+<h3 id="word-wrap"><a href="#word-wrap" class="headerlink" title="word_wrap"></a>word_wrap</h3><p>使每行的字符串长度不超过 <code>length</code>。<code>length</code> 预设为 80。</p>
+<pre><code class="js">&lt;%- word_wrap(str, [length]) %&gt;
+</code></pre>
+<p><strong>示例：</strong></p>
+<pre><code class="js">&lt;%- word_wrap(&#39;Once upon a time&#39;, 8) %&gt;
+// Once upon\n a time
+</code></pre>
+<h3 id="truncate"><a href="#truncate" class="headerlink" title="truncate"></a>truncate</h3><p>移除超过 <code>length</code> 长度的字符串。</p>
+<pre><code class="js">&lt;%- truncate(text, length) %&gt;
+</code></pre>
+<p><strong>示例：</strong></p>
+<pre><code class="js">&lt;%- truncate(&#39;Once upon a time in a world far far away&#39;, {length: 17}) %&gt;
+// Once upon a ti...
+
+&lt;%- truncate(&#39;Once upon a time in a world far far away&#39;, {length: 17, separator: &#39; &#39;}) %&gt;
+// Once upon a...
+
+&lt;%- truncate(&#39;And they found that many people were sleeping better.&#39;, {length: 25, omission: &#39;... (continued)&#39;}) %&gt;
+// And they f... (continued)
+</code></pre>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><h3 id="partial"><a href="#partial" class="headerlink" title="partial"></a>partial</h3><p>载入其他模板文件，您可在 <code>locals</code> 设定区域变量。</p>
+<pre><code class="js">&lt;%- partial(layout, [locals], [options]) %&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cache</code></td>
+<td>缓存（使用 Fragment cache）</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>only</code></td>
+<td>限制局部变量。在模板中只能使用 <code>locals</code> 中设定的变量。</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="fragment-cache"><a href="#fragment-cache" class="headerlink" title="fragment_cache"></a>fragment_cache</h3><p>局部缓存。它储存局部内容，下次使用时就能直接使用缓存。</p>
+<pre><code class="js">&lt;%- fragment_cache(id, fn);
+</code></pre>
+<p><strong>示例：</strong></p>
+<pre><code class="js">&lt;%- fragment_cache(&#39;header&#39;, function(){
+  return &#39;&lt;header&gt;&lt;/header&gt;&#39;;
+}) %&gt;
+</code></pre>
+<h2 id="日期与时间"><a href="#日期与时间" class="headerlink" title="日期与时间"></a>日期与时间</h2><h3 id="date"><a href="#date" class="headerlink" title="date"></a>date</h3><p>插入格式化的日期。<code>date</code> 可以是 UNIX 时间、ISO 字符串、Date 对象或 <a href="http://momentjs.com/" target="_blank" rel="external">Moment.js</a> 对象。<code>format</code> 默认为 <code>date_format</code> 配置信息。</p>
+<pre><code class="js">&lt;%- date(date, [format]) %&gt;
+</code></pre>
+<p><strong>示例：</strong></p>
+<pre><code class="js">&lt;%- date(Date.now()) %&gt;
+// 2013-01-01
+
+&lt;%- date(Date.now(), &#39;YYYY/M/D&#39;) %&gt;
+// Jan 1 2013
+</code></pre>
+<h3 id="date-xml"><a href="#date-xml" class="headerlink" title="date_xml"></a>date_xml</h3><p>插入 XML 格式的日期。<code>date</code> 可以是 UNIX 时间、ISO 字符串、Date 对象或 <a href="http://momentjs.com/" target="_blank" rel="external">Moment.js</a> 对象。</p>
+<pre><code class="js">&lt;%- date_xml(date) %&gt;
+</code></pre>
+<p><strong>示例：</strong></p>
+<pre><code class="js">&lt;%- date_xml(Date.now()) %&gt;
+// 2013-01-01T00:00:00.000Z
+</code></pre>
+<h3 id="time"><a href="#time" class="headerlink" title="time"></a>time</h3><p>插入格式化的时间。<code>date</code> 可以是 UNIX 时间、ISO 字符串、Date 对象或 <a href="http://momentjs.com/" target="_blank" rel="external">Moment.js</a> 对象。<code>format</code> 默认为 <code>time_format</code> 配置信息。</p>
+<pre><code class="js">&lt;%- time(date, [format]) %&gt;
+</code></pre>
+<p><strong>示例：</strong></p>
+<pre><code class="js">&lt;%- time(Date.now()) %&gt;
+// 13:05:12
+
+&lt;%- time(Date.now(), &#39;h:mm:ss a&#39;) %&gt;
+// 1:05:12 pm
+</code></pre>
+<h3 id="full-date"><a href="#full-date" class="headerlink" title="full_date"></a>full_date</h3><p>插入格式化的日期和时间。<code>date</code> 可以是 UNIX 时间、ISO 字符串、Date 对象或 <a href="http://momentjs.com/" target="_blank" rel="external">Moment.js</a> 对象。<code>format</code> 默认为 <code>date_format + time_format</code>。</p>
+<pre><code class="js">&lt;%- full_date(date, [format]) %&gt;
+</code></pre>
+<p><strong>示例：</strong></p>
+<pre><code class="js">&lt;%- full_date(new Date()) %&gt;
+// Jan 1, 2013 0:00:00
+
+&lt;%- full_date(new Date(), &#39;dddd, MMMM Do YYYY, h:mm:ss a&#39;) %&gt;
+// Tuesday, January 1st 2013, 12:00:00 am
+</code></pre>
+<h3 id="moment"><a href="#moment" class="headerlink" title="moment"></a>moment</h3><p><a href="http://momentjs.com/" target="_blank" rel="external">Moment.js</a> 函数库。</p>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><h3 id="list-categories"><a href="#list-categories" class="headerlink" title="list_categories"></a>list_categories</h3><p>插入分类列表。</p>
+<pre><code class="js">&lt;%- list_categories([options]) %&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>orderby</code></td>
+<td>分类排列方式</td>
+<td>name</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td>分类排列顺序。<code>1</code>, <code>asc</code> 升序；<code>-1</code>, <code>desc</code> 降序。</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>show_count</code></td>
+<td>显示每个分类的文章总数</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>分类列表的显示方式。使用 <code>list</code> 以无序列表（unordered list）方式显示。</td>
+<td>list</td>
+</tr>
+<tr>
+<td><code>separator</code></td>
+<td>分类间的分隔符号。只有在 <code>style</code> 不是 <code>list</code> 时有用。</td>
+<td>,</td>
+</tr>
+<tr>
+<td><code>depth</code></td>
+<td>要显示的分类层级。<code>0</code> 显示所有层级的分类；<code>-1</code> 和 <code>0</code> 很类似，但是显示不分层级；<code>1</code> 只显示第一层的分类。</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>class</code></td>
+<td>分类列表的 class 名称。</td>
+<td>category</td>
+</tr>
+<tr>
+<td><code>transform</code></td>
+<td>改变分类名称显示方法的函数</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="list-tags"><a href="#list-tags" class="headerlink" title="list_tags"></a>list_tags</h3><p>插入标签列表。</p>
+<pre><code class="js">&lt;%- list_tags([options]) %&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+<th>预设值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>orderby</code></td>
+<td>标签排列方式</td>
+<td>name</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td>标签排列顺序。<code>1</code>, <code>asc</code> 升序；<code>-1</code>, <code>desc</code> 降序。</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>show_count</code></td>
+<td>显示每个标签的文章总数</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>标签列表的显示方式。使用 <code>list</code> 以无序列表（unordered list）方式显示。</td>
+<td>list</td>
+</tr>
+<tr>
+<td><code>separator</code></td>
+<td>标签间的分隔符号。只有在 <code>style</code> 不是 <code>list</code> 时有用。</td>
+<td>,</td>
+</tr>
+<tr>
+<td><code>class</code></td>
+<td>标签列表的 class 名称。</td>
+<td>tag</td>
+</tr>
+<tr>
+<td><code>transform</code></td>
+<td>改变标签名称显示方法的函数</td>
+<td></td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td>要显示的标签数量（0 = 无限制）</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="list-archives"><a href="#list-archives" class="headerlink" title="list_archives"></a>list_archives</h3><p>插入归档列表。</p>
+<pre><code class="js">&lt;%- list_archives([options]) %&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td>类型。此设定可为 <code>yearly</code> 或 <code>monthly</code>。</td>
+<td>monthly</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td>排列顺序。<code>1</code>, <code>asc</code> 升序；<code>-1</code>, <code>desc</code> 降序。</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>show_count</code></td>
+<td>显示每个归档的文章总数</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>format</code></td>
+<td>日期格式</td>
+<td>MMMM YYYY</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>归档列表的显示方式。使用 <code>list</code> 以无序列表（unordered list）方式显示。</td>
+<td>list</td>
+</tr>
+<tr>
+<td><code>separator</code></td>
+<td>归档间的分隔符号。只有在 <code>style</code> 不是 <code>list</code> 时有用。</td>
+<td>,</td>
+</tr>
+<tr>
+<td><code>class</code></td>
+<td>归档列表的 class 名称。</td>
+<td>archive</td>
+</tr>
+<tr>
+<td><code>transform</code></td>
+<td>改变归档名称显示方法的函数</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="list-posts"><a href="#list-posts" class="headerlink" title="list_posts"></a>list_posts</h3><p>插入文章列表。</p>
+<pre><code class="js">&lt;%- list_posts([options]) %&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>orderby</code></td>
+<td>文章排列方式</td>
+<td>date</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td>文章排列顺序。<code>1</code>, <code>asc</code> 升序；<code>-1</code>, <code>desc</code> 降序。</td>
+<td>-1</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>文章列表的显示方式。使用 <code>list</code> 以无序列表（unordered list）方式显示。</td>
+<td>list</td>
+</tr>
+<tr>
+<td><code>separator</code></td>
+<td>文章间的分隔符号。只有在 <code>style</code> 不是 <code>list</code> 时有用。</td>
+<td>,</td>
+</tr>
+<tr>
+<td><code>class</code></td>
+<td>文章列表的 class 名称。</td>
+<td>post</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td>要显示的文章数量（0 = 无限制）</td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>transform</code></td>
+<td>改变文章名称显示方法的函数</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="tagcloud"><a href="#tagcloud" class="headerlink" title="tagcloud"></a>tagcloud</h3><p>插入标签云。</p>
+<pre><code class="js">&lt;%- tagcloud([tags], [options]) %&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>min_font</code></td>
+<td>最小字体尺寸</td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>max_font</code></td>
+<td>最大字体尺寸</td>
+<td>20</td>
+</tr>
+<tr>
+<td><code>unit</code></td>
+<td>字体尺寸的单位</td>
+<td>px</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td>标签总量</td>
+<td>40</td>
+</tr>
+<tr>
+<td><code>orderby</code></td>
+<td>标签排列方式</td>
+<td>name</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td>标签排列顺序。<code>1</code>, <code>sac</code> 升序；<code>-1</code>, <code>desc</code> 降序</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td>使用颜色</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>start_color</code></td>
+<td>开始的颜色。您可使用十六进位值（<code>#b700ff</code>），rgba（<code>rgba(183, 0, 255, 1)</code>），hsla（<code>hsla(283, 100%, 50%, 1)</code>）或 <a href="http://www.w3.org/TR/css3-color/#svg-color" target="_blank" rel="external">颜色关键字</a>。此变量仅在 <code>color</code> 参数开启时才有用。</td>
+<td></td>
+</tr>
+<tr>
+<td><code>end_color</code></td>
+<td>结束的颜色。您可使用十六进位值（<code>#b700ff</code>），rgba（<code>rgba(183, 0, 255, 1)</code>），hsla（<code>hsla(283, 100%, 50%, 1)</code>）或 <a href="http://www.w3.org/TR/css3-color/#svg-color" target="_blank" rel="external">颜色关键字</a>。此变量仅在 <code>color</code> 参数开启时才有用。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="paginator"><a href="#paginator" class="headerlink" title="paginator"></a>paginator</h3><p>插入分页链接。</p>
+<pre><code class="js">&lt;%- paginator(options) %&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base</code></td>
+<td>基础网址</td>
+<td>/</td>
+</tr>
+<tr>
+<td><code>format</code></td>
+<td>网址格式</td>
+<td>page/%d/</td>
+</tr>
+<tr>
+<td><code>total</code></td>
+<td>分页总数</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>current</code></td>
+<td>目前页数</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>prev_text</code></td>
+<td>上一页链接的文字。仅在 <code>prev_next</code> 设定开启时才有用。</td>
+<td>Prev</td>
+</tr>
+<tr>
+<td><code>next_text</code></td>
+<td>下一页链接的文字。仅在 <code>prev_next</code> 设定开启时才有用。</td>
+<td>Next</td>
+</tr>
+<tr>
+<td><code>space</code></td>
+<td>空白文字</td>
+<td>&hellip;</td>
+</tr>
+<tr>
+<td><code>prev_next</code></td>
+<td>显示上一页和下一页的链接</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>end_size</code></td>
+<td>显示于两侧的页数</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>mid_size</code></td>
+<td>显示于中间的页数</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>show_all</code></td>
+<td>显示所有页数。如果开启此参数的话，<code>end_size</code> 和 <code>mid_size</code> 就没用了。</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="search-form"><a href="#search-form" class="headerlink" title="search_form"></a>search_form</h3><p>插入 Google 搜索框。</p>
+<pre><code class="js">&lt;%- search_form(options) %&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>class</code></td>
+<td>表单的 class name</td>
+<td>search-form</td>
+</tr>
+<tr>
+<td><code>text</code></td>
+<td>搜索提示文字</td>
+<td>Search</td>
+</tr>
+<tr>
+<td><code>button</code></td>
+<td>显示搜索按钮。此参数可为布尔值（boolean）或字符串，当设定是字符串的时候，即为搜索按钮的文字。</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="number-format"><a href="#number-format" class="headerlink" title="number_format"></a>number_format</h3><p>格式化数字。</p>
+<pre><code class="js">&lt;%- number_format(number, [options]) %&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>precision</code></td>
+<td>数字精度。此选项可为 <code>false</code> 或非负整数。</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>delimiter</code></td>
+<td>千位数分隔符号</td>
+<td>,</td>
+</tr>
+<tr>
+<td><code>separator</code></td>
+<td>整数和小数之间的分隔符号</td>
+<td>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例：</strong></p>
+<pre><code class="js">&lt;%- number_format(12345.67, {precision: 1}) %&gt;
+// 12,345.68
+
+&lt;%- number_format(12345.67, {precision: 4}) %&gt;
+// 12,345.6700
+
+&lt;%- number_format(12345.67, {precision: 0}) %&gt;
+// 12,345
+
+&lt;%- number_format(12345.67, {delimiter: &#39;&#39;}) %&gt;
+// 12345.67
+
+&lt;%- number_format(12345.67, {separator: &#39;/&#39;}) %&gt;
+// 12,345/67
+</code></pre>
+<h3 id="open-graph"><a href="#open-graph" class="headerlink" title="open_graph"></a>open_graph</h3><p>插入 open graph 资源。</p>
+<pre><code class="js">&lt;%- open_graph([options]) %&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>页面标题 (<code>og:title</code>)</td>
+<td><code>page.title</code></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>页面类型 (<code>og:type</code>)</td>
+<td>blog</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>页面网址 (<code>og:url</code>)</td>
+<td><code>url</code></td>
+</tr>
+<tr>
+<td><code>image</code></td>
+<td>页面图片 (<code>og:image</code>)</td>
+<td>内容中的图片</td>
+</tr>
+<tr>
+<td><code>site_name</code></td>
+<td>网站名称 (<code>og:site_name</code>)</td>
+<td><code>config.title</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>页面描述 (<code>og:desription</code>)</td>
+<td>内容摘要或前 200 字</td>
+</tr>
+<tr>
+<td><code>twitter_card</code></td>
+<td>Twitter 卡片类型 (<code>twitter:card</code>)</td>
+<td>summary</td>
+</tr>
+<tr>
+<td><code>twitter_id</code></td>
+<td>Twitter ID (<code>twitter:creator</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>twitter_site</code></td>
+<td>Twitter 网站 (<code>twitter:site</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>google_plus</code></td>
+<td>Google+ 个人资料链接</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fb_admins</code></td>
+<td>Facebook 管理者 ID</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fb_app_id</code></td>
+<td>Facebook 应用程序 ID</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="toc"><a href="#toc" class="headerlink" title="toc"></a>toc</h3><p>解析内容中的标题标签 (h1~h6) 并插入目录。</p>
+<pre><code class="js">&lt;%- toc(str, [options]) %&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>class</code></td>
+<td>Class 名称</td>
+<td>toc</td>
+</tr>
+<tr>
+<td><code>list_number</code></td>
+<td>显示编号</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例：</strong></p>
+<pre><code class="js">&lt;%- toc(page.content) %&gt;
+</code></pre>
+
+      
+    </div>
+</article>
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span>文章标题:</span>辅助函数（Helpers）</p>
+    <p><span>文章字数:</span><span class="post-count">2,475</span></p>
+    <p><span>本文作者:</span><a href="javascript:void(0)" title="牵猪的仓鼠">牵猪的仓鼠</a></p>
+    <p><span>发布时间:</span>2017-03-12, 19:35:02</p>
+    <p><span>最后更新:</span>2017-03-13, 20:52:21</p>
+    <span>原始链接:</span><a class="post-url" href="/2017/03/12/hexo/docs/helpers/" title="辅助函数（Helpers）">http://s.amlove.cn/2017/03/12/hexo/docs/helpers/</a>
+    <p>
+        <span>版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+    
+        <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2017/03/12/hexo/docs/helpers/" data-title="辅助函数（Helpers）" data-url="http://s.amlove.cn/2017/03/12/hexo/docs/helpers/"></div>
+    <script>
+        var duoshuoQuery;
+        function loadComment() {
+            duoshuoQuery = {short_name: $(".theme_duoshuo_domain").val()};
+            var d = document, s = d.createElement('script');
+            s.src = 'https://static.duoshuo.com/embed.js?t='+new Date().getTime();
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2017-2027 s.amlove.cn</p>
+
+    </div>
+</div>
+<div class="full-toc">
+    <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+</div>
+<div class="acParent"></div>
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <img src="/img/alipay.jpg" title="扫码支持">
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+</body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
+<script src="/js/script.js"></script>
+<script>
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['@牵猪的仓鼠','#PostgreSQL','#linux命令','#vim','#ftp','#hexo','#hexo接口','#hexo指南',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        
+            $(".post .pjax table").addClass("green_title");
+        
+        
+        $("input[name=pay]").on("click", function () {
+            $(".shang_payimg img").attr("src","/img/"+$("input[name=pay]:checked").val()+".jpg");
+        })
+        
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1;
+            var $numbering = $('<ul/>').addClass('pre-numbering').attr("unselectable","on");
+            $(this).addClass('has-numbering')
+                    .parent()
+                    .append($numbering);
+            for(i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+        
+        $.getScript("//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+    }
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+</script>
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 3px;
+        border: 1px solid #C3CCD0;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        padding-left: 40px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 9px 2px 12px 5px;
+        text-align: right;
+        color: #AAA;
+    }
+</style>
+
+</html>
